@@ -1,35 +1,35 @@
-const { resolve } = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const TerserWebpackPlugin = require("terser-webpack-plugin");
+import { resolve } from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import TerserWebpackPlugin from 'terser-webpack-plugin';
 
-const isProd = process.env.NODE_ENV === "production";
+const isProd = process.env.NODE_ENV === 'production';
 
 const config = {
-  mode: isProd ? "production" : "development",
+  mode: isProd ? 'production' : 'development',
   entry: {
-    index: "./src/index.tsx",
+    index: './src/index.tsx',
   },
   output: {
-    path: resolve(__dirname, "dist"),
-    filename: "bundle.js",
+    path: resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
   },
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx"],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        use: "babel-loader",
+        use: 'babel-loader',
         exclude: /node_modules/,
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
-      filename: "index.html",
-      inject: "body",
+      template: './src/index.html',
+      filename: 'index.html',
+      inject: 'body',
     }),
   ],
 };
@@ -44,7 +44,7 @@ if (isProd) {
     open: true,
     hot: true,
     compress: true,
-    stats: "errors-only",
+    stats: 'errors-only',
     overlay: true,
   };
 }

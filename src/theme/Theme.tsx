@@ -99,9 +99,10 @@ interface Props {
   children: ReactChild
 }
 
-export const BlueTheme: FC<Props> = ({children}) => (
-  <ThemeProvider theme={THEME}>
-    <GlobalStyles />
-    {children}
-  </ThemeProvider>
-);
+export const BlueTheme: FC<Props> = ({ children }) =>
+  (
+    <ThemeProvider theme={THEME}>
+      <GlobalStyles />
+      {children}
+    </ThemeProvider>
+  );
