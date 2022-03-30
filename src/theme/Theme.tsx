@@ -1,5 +1,6 @@
 import React, { FC, ReactChild } from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import { spacing } from './spacing';
 import { Join, PathsToStringProps } from './types';
 
 export const THEME = {
@@ -92,6 +93,11 @@ export const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;400;700&display=swap');
   html {
     font-family: 'Roboto Slab', serif;
+    height: 100vh;
+  }
+  body {
+    min-height: 100vh;
+    margin: 0;
   }
 `;
 

@@ -1,4 +1,4 @@
-import { StyledProps } from 'styled-components';
+import { StyledProps, css } from 'styled-components';
 
 import { THEME } from './Theme';
 import { rem } from './rem';
@@ -6,6 +6,9 @@ import { rem } from './rem';
 type Spacings = typeof THEME['spacing'][number];
 
 export const spacing = (...values: Spacings[]) =>
-  ({ theme }: StyledProps<unknown>) =>
-    values.map((value) =>
-      rem(theme.baseFontSize * (value * 0.25))).toString();
+  ({ theme }: StyledProps<unknown>) => {
+    const result = values.map((value) =>
+      rem(theme.baseFontSize * (value * 0.25))({theme})).toString();
+    console.log(result);
+    return result;
+  }

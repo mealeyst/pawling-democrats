@@ -7,6 +7,9 @@ export interface IBlogPostFields {
   /** Title */
   title?: string | undefined
 
+  /** Slug */
+  slug: string
+
   /** Body */
   body?: Document | undefined
 }
@@ -30,9 +33,39 @@ export interface IBlogPost extends Entry<IBlogPostFields> {
   }
 }
 
+export interface INavigationMenuFields {
+  /** Name */
+  name?: string | undefined
+
+  /** Menu Items */
+  menuItems: Entry<{ [fieldId: string]: unknown }>[]
+}
+
+/** This content type simply references Page content types and is used to render Navigation Menus (e.g. the Site Navigation at the top of the site) */
+
+export interface INavigationMenu extends Entry<INavigationMenuFields> {
+  sys: {
+    id: string
+    type: string
+    createdAt: string
+    updatedAt: string
+    locale: string
+    contentType: {
+      sys: {
+        id: 'navigationMenu'
+        linkType: 'ContentType'
+        type: 'Link'
+      }
+    }
+  }
+}
+
 export interface IPageFields {
   /** Title */
   title?: string | undefined
+
+  /** Slug */
+  slug: string
 
   /** Body */
   body?: Document | undefined
@@ -57,7 +90,7 @@ export interface IPage extends Entry<IPageFields> {
   }
 }
 
-export type CONTENT_TYPE = 'blogPost' | 'page'
+export type CONTENT_TYPE = 'blogPost' | 'navigationMenu' | 'page'
 
 export type LOCALE_CODE = 'en-US'
 

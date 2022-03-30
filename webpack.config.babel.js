@@ -1,6 +1,7 @@
 import { resolve } from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import TerserWebpackPlugin from 'terser-webpack-plugin';
+import Dotenv from 'dotenv-webpack';
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -25,12 +26,16 @@ const config = {
       },
     ],
   },
+  node: {
+    fs: "empty"
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html',
       inject: 'body',
     }),
+    new Dotenv()
   ],
 };
 
