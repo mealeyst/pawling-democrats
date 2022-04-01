@@ -4,7 +4,7 @@ import { usePromised } from '../../hooks/usePromised';
 import { client } from '../../services/Contentful';
 import { useMediaQuery } from '../../theme/mediaQueies';
 import { DesktopMenu } from './DesktopMenu';
-import { LinkList } from './LinkList';
+import { LinkList } from './LinkList/LinkList';
 import { INavigationMenuFields } from '../../../@types/generated/contentful';
 import { Entry } from 'contentful';
 export const Navigation = () => {

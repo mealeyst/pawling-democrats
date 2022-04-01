@@ -6,20 +6,10 @@ interface Props {
   children?: ReactElement
 }
 
-export const DesktopMenuBase:FC<Props> = ({className, children }) => {
+export const DesktopMenu:FC<Props> = ({className, children }) => {
   return (
     <Nav className={className}>
       {children && children}
     </Nav>
   )
 }
-
-export const DesktopMenu = styled(DesktopMenuBase)`
-  ul {
-    list-style: none;
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    margin: 0;
-  }
-`

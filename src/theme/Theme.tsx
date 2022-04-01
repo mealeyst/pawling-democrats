@@ -1,6 +1,5 @@
 import React, { FC, ReactChild } from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import { spacing } from './spacing';
 import { Join, PathsToStringProps } from './types';
 
 export const THEME = {
@@ -90,9 +89,9 @@ declare module 'styled-components' {
 }
 
 export const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
   html {
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Ubuntu', sans-serif;
     height: 100vh;
   }
   body {

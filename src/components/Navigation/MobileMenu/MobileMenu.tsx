@@ -1,5 +1,5 @@
 import React, {FC, ReactElement, useState } from 'react';
-import { MobileMenuButton } from './MobileMenuButton';
+import { HamburgerButton } from './HamburgerButton';
 import { MobileDrawer } from './MobileDrawer'
 import { Nav } from '..';
 
@@ -11,7 +11,7 @@ export const MobileMenu: FC<Props> = ({children}) => {
   const [mobileDrawer, setMobileDrawer] = useState(false);
   return (
     <Nav>
-      <MobileMenuButton onClick={() => setMobileDrawer(true)}/>
+      <HamburgerButton onClick={() => setMobileDrawer(true)}/>
       {mobileDrawer &&
         <MobileDrawer>
           <button onClick={()=> setMobileDrawer(false) }>Close Menu</button>
