@@ -1,21 +1,22 @@
 import React, { FC, HTMLAttributes } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faX } from '@fortawesome/free-solid-svg-icons'
 import { spacing } from '../../../theme/spacing';
 import { color } from '../../../theme/color';
 import { ScreenReaderOnly } from '../../Accessibility/ScreenReaderOnly';
 
-export const HambugerButtonBase: FC<HTMLAttributes<HTMLButtonElement>>  = ({children, ...props}) =>
+export const CloseButtonBase: FC<HTMLAttributes<HTMLButtonElement>>  = ({children, ...props}) =>
   <button {...props}>
-    <FontAwesomeIcon icon={faBars} size="lg" />
+    <FontAwesomeIcon icon={faX} size="lg" />
     <ScreenReaderOnly>{children}</ScreenReaderOnly>
   </button>;
 
-export const HamburgerButton = styled(HambugerButtonBase)`
-  color: ${color("primary.grey1")};
+export const CloseButton = styled(CloseButtonBase)`
+  color: ${color("primary.grey9")};
   height: ${spacing(11)};
   width: ${spacing(11)};
   background-color: transparent;
   border: none;
+  margin-left: auto;
 `

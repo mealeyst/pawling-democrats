@@ -1,16 +1,22 @@
-import React, { FC, HTMLAttributes, useState, useCallback, useEffect } from 'react';
+import React, { FC, HTMLAttributes } from 'react';
 import styled from 'styled-components';
+import { FadeAnimation } from '../../../theme/Animations/Fade';
 import { color } from '../../../theme/color';
 import { spacing } from '../../../theme/spacing';
 import Portal from '../../Portal/Portal';
 
-const MobileDrawerBase: FC<HTMLAttributes<HTMLMenuElement>> = (props) =>
+interface Props {
+  show: boolean
+}
+
+const MobileDrawerBase: FC<Props & HTMLAttributes<HTMLMenuElement>> = ({show, ...props}) =>
   <Portal id='mobile-drawer'>
-    <menu {...props} />
+    <FadeAnimation show={show}>
+      <menu {...props} />
+    </FadeAnimation>
   </Portal>;
 
 export const MobileDrawer = styled(MobileDrawerBase)`
-  border: 1px solid red;
   background-color: ${color("primary.grey2")};
   margin: 0;
   padding: ${spacing(4)};

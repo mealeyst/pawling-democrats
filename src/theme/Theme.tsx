@@ -68,7 +68,7 @@ export const THEME = {
     72,
     80,
     96,
-  ],
+  ]
 };
 
 export type Theme = typeof THEME;
