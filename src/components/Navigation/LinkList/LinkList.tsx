@@ -15,13 +15,12 @@ interface Props {
 
 
 export const LinkListView: FC<HTMLAttributes<HTMLUListElement> & Props> = ({ data, ...props }) => {
-  data && console.log(data.fields.menuItems)
   return (
     <ul {...props}>
       {data && data.fields.menuItems.map((menuItem) => {
         if (isIPage(menuItem)) {
           return (
-          <LinkListItem>
+          <LinkListItem key={menuItem.sys.id}>
             <NavigationLink href={menuItem.fields.slug}>{menuItem.fields.title}</NavigationLink>
           </LinkListItem>
         )

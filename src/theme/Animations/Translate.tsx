@@ -1,11 +1,15 @@
 import { HTMLAttributes } from "react";
-import styled, { css, DefaultTheme, keyframes, ThemeProps } from "styled-components";
-import { rem } from "../rem";
-import { translate, Translation } from "../translate";
+import styled, { css, keyframes } from "styled-components";
+import { translate, Coordinate} from "../translate";
 
-type TranslateCoords = Record<string, Translation>
+interface Translation {
+  coord1: Coordinate,
+  coord2?: Coordinate
+}
 
-interface Props {
+export type TranslateCoords = Record<string, Translation>
+
+export interface TranslationProps {
   duration?: number;
   animation: 'translateIn' | 'translateOut';
   translateInCoords?: TranslateCoords;
@@ -30,34 +34,36 @@ const defaultTranslateOut = {
   }
 }
 
-const translateIn = (translateInCoords: TranslateCoords = defaultTranslateIn) =>
-  keyframes`
+export const translateIn = (translateInCoords: TranslateCoords = defaultTranslateIn) => {
+  return keyframes`
   {
     ${
       Object.entries(translateInCoords).map(
-        ([k, v]) => `${k}{ transform: ${translate(v)};}`
+        ([k, v]) => `${k}{ transform: ${translate(v.coord1, v.coord2)};}`
       ).join('')
     }
   }
-  `;
+  `
+};
 
-const translateOut = (translateOutCoords: TranslateCoords = defaultTranslateOut) =>
-  keyframes`
+export const translateOut = (translateOutCoords: TranslateCoords = defaultTranslateOut) => {
+  return keyframes`
   {
     ${
       Object.entries(translateOutCoords).map(
-        ([k, v]) => `${k}{ transform: ${translate(v)};}`
+        ([k, v]) => `${k}{ transform: ${translate(v.coord1, v.coord2)};}`
       ).join('')
     }
   }
-  `;
+  `
+};
 
-export const animations = { translateIn, translateOut }
+export const translations = { translateIn, translateOut }
 
-export const translateStyles = css<Props>`
-animation: ${({ animation, translateInCoords }) => animations[animation](translateInCoords)} ${({duration = 250}) => duration}ms normal forwards ease-in-out;
+export const translateStyles = css<TranslationProps>`
+animation: ${({ animation = 'translateIn', translateInCoords, translateOutCoords }) => animation === 'translateIn' ? translations[animation](translateInCoords): translations[animation](translateOutCoords)} ${({duration = 250}) => duration}ms normal forwards ease-in-out;
 `;
 
-export const Translate = styled.div<Props & HTMLAttributes<HTMLDivElement>>`
+export const Translate = styled.div<TranslationProps & HTMLAttributes<HTMLDivElement>>`
   ${translateStyles}
 `;
