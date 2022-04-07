@@ -12,19 +12,23 @@ interface Props {
 
 const defaultTranslateIn = {
   'from': {
-    coord1: '-100%'
+    coord1: '0px',
+    coord2: '-100%'
   },
   'to': {
-    coord1: '0px'
+    coord1: '0px',
+    coord2: '0px'
   }
 }
 
 const defaultTranslateOut = {
   'from': {
-    coord1: '0px'
+    coord1: '0px',
+    coord2: '0px'
   },
   'to': {
-    coord1: '-100%'
+    coord1: '0px',
+    coord2: '-100%'
   }
 }
 
@@ -42,7 +46,7 @@ export const MobileMenu: FC<Props> = ({children}) => {
         show={mobileDrawer}
         translateInCoords={defaultTranslateIn}
         translateOutCoords={defaultTranslateOut}
-        duration={275}>
+        duration={250}>
           <MobileDrawerHeader>
             <CloseButton onClick={()=> setMobileDrawer(false) }>Close Menu</CloseButton>
           </MobileDrawerHeader>

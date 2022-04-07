@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useDelayUnmount } from '../../../hooks/useDelayedUnmount';
 import { Translate, translateStyles, TranslationProps, translations } from '../../../theme/Animations/Translate';
 import { color } from '../../../theme/color';
+import { shadow } from '../../../theme/shadow';
 import { spacing } from '../../../theme/spacing';
 import Portal from '../../Portal/Portal';
 
@@ -29,6 +30,7 @@ export const MobileDrawer = styled(MobileDrawerBase)`
   background-color: ${color("primary.grey2")};
   margin: 0;
   padding: ${spacing(4)};
+  box-shadow: ${shadow('shadow-2xl')};
   position: fixed;
   top: 0;
   left: 0;
