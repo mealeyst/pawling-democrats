@@ -7,9 +7,10 @@ import { DesktopMenu } from './DesktopMenu';
 import { LinkList } from './LinkList/LinkList';
 import { INavigationMenuFields } from '../../../@types/generated/contentful';
 import { Entry } from 'contentful';
+import { useEntry } from '../../hooks/useEntry';
 export const Navigation = () => {
   const showMobileMenu = useMediaQuery('sm', false);
-  const { data, error, isLoading } = usePromised((): Promise<Entry<INavigationMenuFields>> => client.getEntry('1GjjrJGYkHlgrGltIHjrcU'));
+  const { data } = useEntry('1GjjrJGYkHlgrGltIHjrcU')
   
   return (
     <>

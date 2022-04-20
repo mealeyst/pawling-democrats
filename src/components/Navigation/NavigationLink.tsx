@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { color } from '../../theme/color';
 import { up } from '../../theme/mediaQueies';
 import { rem } from '../../theme/rem';
 
-export const NavigationLink = styled.a`
+export const NavigationLink = styled(Link)`
   color: ${color("primary.grey9")};
   text-transform: uppercase;
   text-decoration: none;

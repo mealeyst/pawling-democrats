@@ -5,6 +5,7 @@ import { Nav } from '..';
 import { CloseButton } from './CloseButton';
 import { MobileDrawerHeader } from './MobileDrawerHeader';
 import { translations } from '../../../theme/Animations/Translate';
+import { H5 } from '../../../theme/Typography';
 
 interface Props {
   children?: ReactElement

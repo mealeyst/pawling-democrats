@@ -21,7 +21,7 @@ export const LinkListView: FC<HTMLAttributes<HTMLUListElement> & Props> = ({ dat
         if (isIPage(menuItem)) {
           return (
           <LinkListItem key={menuItem.sys.id}>
-            <NavigationLink href={menuItem.fields.slug}>{menuItem.fields.title}</NavigationLink>
+            <NavigationLink to={`/${menuItem.fields.slug}`}>{menuItem.fields.title}</NavigationLink>
           </LinkListItem>
         )
         }
