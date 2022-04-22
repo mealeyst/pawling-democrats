@@ -1,5 +1,6 @@
 import React, { FC, ReactChild } from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import { color } from './color';
 import { Join, PathsToStringProps } from './types';
 
 export const THEME = {
@@ -107,6 +108,12 @@ export const GlobalStyles = createGlobalStyle`
   body {
     min-height: 100vh;
     margin: 0;
+  }
+  hr {
+    width: 100%;
+    background-color: ${color('primary.grey7')};
+    height: 1px;
+    border: none;
   }
 `;
 

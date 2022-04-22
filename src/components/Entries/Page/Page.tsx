@@ -14,19 +14,19 @@ import { spacing } from '../../../theme/spacing';
 
 
 export const Body = styled.section`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: ${spacing(3)};
-  margin: ${spacing(16, 4, 4)};
-  > * {
-    grid-column: span 4;
-  }
-  ${up('md')`
-    grid-template-columns: repeat(12, 1fr);
-    > * {
-      grid-column: span 12;
-    }
-  `}
+  margin: ${spacing(20, 4, 4)};
+  // display: grid;
+  // grid-template-columns: repeat(4, 1fr);
+  // gap: ${spacing(3)};
+  // > * {
+  //   grid-column: span 4;
+  // }
+  // ${up('md')`
+  //   grid-template-columns: repeat(12, 1fr);
+  //   > * {
+  //     grid-column: span 12;
+  //   }
+  // `}
 `
 
 export const Page = () => {
@@ -35,7 +35,6 @@ export const Page = () => {
     'content_type': 'page',
     'fields.slug[in]': slug
   }) as UsePromisedState<Entry<IPageFields>[]>;
-  console.log(data, error, isLoading)
   const shouldRender = !isLoading && data
   return (
     <main>

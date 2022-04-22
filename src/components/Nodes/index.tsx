@@ -1,8 +1,17 @@
 import React from 'react';
-import { BLOCKS, Document, MARKS } from '@contentful/rich-text-types';
+import { Asset } from 'contentful';
+import { BLOCKS, Document, MARKS, Inline, Block } from '@contentful/rich-text-types';
 import { documentToReactComponents as defaultDocumentToReactComponents, Options } from '@contentful/rich-text-react-renderer';
 
-import * as Typography from '../../theme/Typography'
+import * as Typography from '../../theme/Typography';
+import { Image } from '../Assets/Image';
+
+const renderEmbededAsset = (node: Block | Inline) => {
+  const embeddedAsset = node.data.target as Asset;
+  if (embeddedAsset.fields.file.contentType.includes('image')) {
+    return <Image {...embeddedAsset} />
+  }
+}
 
 
 const options: Options = {
@@ -19,7 +28,10 @@ const options: Options = {
     [BLOCKS.HEADING_5]: (_node, children) => <Typography.H5>{children}</Typography.H5>,
     [BLOCKS.HEADING_6]: (_node, children) => <Typography.H6>{children}</Typography.H6>,
     [BLOCKS.PARAGRAPH]: (_node, children) => <Typography.P>{children}</Typography.P>,
+    [BLOCKS.EMBEDDED_ASSET]: (node) => renderEmbededAsset(node)
   }
 };
 
-export const documentToReactComponents = (document: Document) => defaultDocumentToReactComponents(document, options)
+export const documentToReactComponents = (document: Document) => {
+  return defaultDocumentToReactComponents(document, options)
+}
