@@ -8,7 +8,7 @@ import { Image } from '../Assets/Image';
 
 const renderEmbededAsset = (node: Block | Inline) => {
   const embeddedAsset = node.data.target as Asset;
-  if (embeddedAsset.fields.file.contentType.includes('image')) {
+  if (embeddedAsset && embeddedAsset.fields && embeddedAsset.fields.file.contentType.includes('image')) {
     return <Image {...embeddedAsset} />
   }
 }

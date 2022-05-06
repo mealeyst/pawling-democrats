@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { MobileMenu } from './MobileMenu';
-import { usePromised } from '../../hooks/usePromised';
-import { client } from '../../services/Contentful';
 import { useMediaQuery } from '../../theme/mediaQueies';
 import { DesktopMenu } from './DesktopMenu';
 import { LinkList } from './LinkList/LinkList';
-import { INavigationMenuFields } from '../../../@types/generated/contentful';
-import { Entry } from 'contentful';
 import { useEntry } from '../../hooks/useEntry';
+import { PawlingDemIcon } from '../Icons/PawlingDemIcon';
+import { Link } from 'react-router-dom';
+
 export const Navigation = () => {
   const showMobileMenu = useMediaQuery('sm', false);
   const { data } = useEntry('1GjjrJGYkHlgrGltIHjrcU')
@@ -21,6 +20,7 @@ export const Navigation = () => {
       }
       {!showMobileMenu &&
         <DesktopMenu>
+          <Link to="/"><PawlingDemIcon /></Link>
           <LinkList data={data} />
         </DesktopMenu>
       }

@@ -38,7 +38,9 @@ export const LinkList = styled(LinkListView)`
   margin: 0;
   width: 100%;
   ${up('sm')`
+    grid-column-start: 2;
+    grid-column-end: 12;
     flex-direction: row;
-    justify-content: space-around;
+    width: auto;
   `}
 `

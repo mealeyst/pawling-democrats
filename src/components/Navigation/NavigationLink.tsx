@@ -5,12 +5,9 @@ import { up } from '../../theme/mediaQueies';
 import { rem } from '../../theme/rem';
 
 export const NavigationLink = styled(Link)`
-  color: ${color("primary.grey9")};
-  text-transform: uppercase;
   text-decoration: none;
 
   ${up('sm')`
-    color: ${color('primary.grey1')};
     position: relative;
     padding-bottom: ${rem(2)};
     transition: color, 0.25s ease-in-out;
@@ -25,9 +22,8 @@ export const NavigationLink = styled(Link)`
       transition: background-color, 0.25s ease-in-out;
     }
     &:hover{
-      color: ${color('primary.grey3')};
       &::before{
-        background-color: ${color('primary.grey3')};
+        background-color: ${color('white.200')};
       }
     }
   `}

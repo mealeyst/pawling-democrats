@@ -1,9 +1,9 @@
-import React from 'react';
 import { Asset } from 'contentful';
-import styled from 'styled-components';
+import styled, { StyledComponent, DefaultTheme} from 'styled-components';
 
-export const Image = styled.img.attrs(({ fields }: Asset) => ({
+export const Image: StyledComponent<"img", DefaultTheme, Asset> = styled.img.attrs<Asset>(({ fields }) => ({
   alt: fields.description,
   src: fields.file.url
 }))`
+  max-width: 100%;
 `

@@ -13,7 +13,7 @@ export const CloseButtonBase: FC<HTMLAttributes<HTMLButtonElement>>  = ({childre
   </button>;
 
 export const CloseButton = styled(CloseButtonBase)`
-  color: ${color("primary.grey9")};
+  color: ${color("white.900")};
   height: ${spacing(11)};
   width: ${spacing(11)};
   background-color: transparent;

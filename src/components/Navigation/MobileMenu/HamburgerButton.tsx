@@ -13,7 +13,7 @@ export const HambugerButtonBase: FC<HTMLAttributes<HTMLButtonElement>>  = ({chil
   </button>;
 
 export const HamburgerButton = styled(HambugerButtonBase)`
-  color: ${color("primary.grey1")};
+  color: ${color("secondary.50")};
   height: ${spacing(11)};
   width: ${spacing(11)};
   background-color: transparent;

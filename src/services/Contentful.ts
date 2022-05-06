@@ -7,7 +7,8 @@ export const client = Contentful.createClient({
   accessToken: process.env.CONTENTFUL_CONTENT_API_ACCESS_TOKEN as string
 });
 
-const getEntries = (query: any) => client.getEntries(query).then(response => response.items)
+const getEntries = (query: any) => client.getEntries(query).then(response => response.items);
+
 
 const getEntry = (id: string, query: any) =>
   client

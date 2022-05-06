@@ -27,7 +27,7 @@ const MobileDrawerBase: FC<Props & TranslationProps & HTMLAttributes<HTMLMenuEle
 };
 
 export const MobileDrawer = styled(MobileDrawerBase)`
-  background-color: ${color("primary.grey2")};
+  background-color: ${color("white.200")};
   margin: 0;
   padding: ${spacing(4)};
   box-shadow: ${shadow('shadow-2xl')};
