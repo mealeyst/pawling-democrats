@@ -16,7 +16,7 @@ export const DesktopMenu:FC<DesktopNavProps> = ({className, children }) => {
   const linkColor = scrollY < scrollYTarget ? color("black.400") : color("white.50")
   return (
     <Nav className={className} height={height} backgroundColor={backgroundColor} linkColor={linkColor}>
-      {children && children}
+      <section>{children && children}</section>
     </Nav>
   )
 }

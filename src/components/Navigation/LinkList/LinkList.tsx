@@ -42,5 +42,6 @@ export const LinkList = styled(LinkListView)`
     grid-column-end: 12;
     flex-direction: row;
     width: auto;
+    align-items: center;
   `}
 `

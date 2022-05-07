@@ -13,8 +13,7 @@ type NavProps = {
 }
 
 export const Nav = styled.nav<StyledProps<NavProps>>`
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  display: flex;
   align-items: center;
   height: ${({height = 15}) => spacing(height)};
   grid-template-rows: auto;
@@ -25,10 +24,22 @@ export const Nav = styled.nav<StyledProps<NavProps>>`
   top: 0;
   left: 0;
   transition: all 0.4s ease-in-out;
+  section {
+    max-width: 1440px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 100%;
+  }
   a, a:visited {
     color: ${({ linkColor = color("primary.50")}) => linkColor};
   }
   @media (min-width: ${({theme}) => rem(theme.breakpoints['sm'])}) {
     padding: ${spacing(0, 4)};
+    a {
+      display: flex;
+      align-items: center;
+    }
   }
 `

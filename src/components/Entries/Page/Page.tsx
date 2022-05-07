@@ -11,9 +11,12 @@ import { spacing } from '../../../theme/spacing';
 import { getEntries } from '../../../services/Contentful';
 
 export const Body = styled.section`
-  margin: ${spacing(20, 4, 4)};
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: ${spacing(20)};
+  max-width: 1440px;
   ${up('sm')`
-    margin: ${spacing(35, 4, 4)};
+    margin-top: ${spacing(35)};
   `}
 `
 
