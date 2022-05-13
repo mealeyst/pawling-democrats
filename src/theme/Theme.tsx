@@ -1,6 +1,7 @@
 import React, { FC, ReactChild } from 'react';
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import { createGlobalStyle, css, ThemeProvider } from 'styled-components';
 import { color } from './color';
+import { spacing } from './spacing';
 import { Join, PathsToStringProps } from './types';
 
 export const THEME = {
@@ -20,11 +21,16 @@ export const THEME = {
       '400': 'hsl(218, 74%, 15%)',
     },
     secondary: {
-      '50': 'hsl(219, 66%, 54%)',
-      '100': 'hsl(219, 61%, 47%)',
-      '200': 'hsl(219, 66%, 40%)',
-      '300': 'hsl(219, 70%, 34%)',
-      '400': 'hsl(219, 75%, 28%)',
+      '50': 'rgba(0, 255, 255, 1)',
+      '100': 'rgba(0, 227, 255, 1)',
+      '200': 'rgba(0, 198, 255, 1)',
+      '300': 'rgba(0, 170, 255, 1)',
+      '400': 'rgba(0, 142, 255, 1)',
+      '500': 'rgba(0, 113, 255, 1)',
+      '600': 'rgba(0, 85, 255, 1)',
+      '700': 'rgba(0, 57, 255, 1)',
+      '800': 'rgba(0, 28, 255, 1)',
+      '900': 'rgba(0, 0, 255, 1)',
     },
     black: {
       '50': 'hsl(240, 1%, 23%)',
@@ -117,9 +123,8 @@ declare module 'styled-components' {
 }
 
 export const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
   html {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Inter', sans-serif;
     height: 100vh;
   }
   body {
@@ -129,10 +134,38 @@ export const GlobalStyles = createGlobalStyle`
   }
   hr {
     width: 100%;
-    background-color: ${color('secondary.50')};
+    background-color: ${color('grey.50')};
     height: 1px;
     border: none;
   }
+  ${THEME.spacing.map((space) => {
+    return css`
+      .mt-${space}{
+        margin-top: ${spacing(space)};
+      }
+      .ml-${space}{
+        margin-left: ${spacing(space)};
+      }
+      .mr-${space}{
+        margin-right: ${spacing(space)};
+      }
+      .mb-${space}{
+        margin-bottom: ${spacing(space)};
+      }
+      .pt-${space}{
+        padding-top: ${spacing(space)};
+      }
+      .pl-${space}{
+        padding-left: ${spacing(space)};
+      }
+      .pr-${space}{
+        padding-right: ${spacing(space)};
+      }
+      .pb-${space}{
+        padding-bottom: ${spacing(space)};
+      }
+    `
+  })}
 `;
 
 interface Props {

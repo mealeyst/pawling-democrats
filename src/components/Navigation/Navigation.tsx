@@ -4,7 +4,7 @@ import { useMediaQuery } from '../../theme/mediaQueies';
 import { DesktopMenu } from './DesktopMenu';
 import { LinkList } from './LinkList/LinkList';
 import { useEntry } from '../../hooks/useEntry';
-import { PawlingDemIcon } from '../Icons/PawlingDemIcon';
+import { PawlingDemsIcon } from '../Icons/PawlingDemsIcon';
 import { Link } from 'react-router-dom';
 
 export const Navigation = () => {
@@ -20,7 +20,7 @@ export const Navigation = () => {
       }
       {!showMobileMenu &&
         <DesktopMenu>
-          <Link to="/"><PawlingDemIcon /></Link>
+          <Link to="/"><PawlingDemsIcon /></Link>
           <LinkList data={data} />
         </DesktopMenu>
       }
