@@ -22,13 +22,14 @@ export const Body = styled.section`
 
 export const Page = () => {
   const { slug = 'home' } = useParams();
+
   
   const [body, setBody] = useState<Document | undefined>(undefined);
   useEffect(() => {
     (async () => {
       const data = await getEntries({
         'content_type': 'page',
-        'fields.slug': slug
+        'fields.slug': slug === 'pawling-democrats' ? 'home' : slug 
       }) as Entry<IPageFields>[];
       data && setBody(data[0].fields.body as Document)
     })();
