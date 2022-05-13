@@ -13,6 +13,7 @@ const App: React.FC = (props) => {
         <Navigation />
         <Routes>
           <Route path="/" element={<Page />} />
+          <Route path="/pawling-democrats" element={<Page />} />
           <Route path="/:slug" element={<Page />} />
         </Routes>
         <Footer />
