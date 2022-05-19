@@ -35,6 +35,7 @@ export const Nav = styled.nav<StyledProps<NavProps>>`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 10;
   transition: all 0.4s ease-in-out;
   section {
     max-width: 1440px;

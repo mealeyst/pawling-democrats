@@ -20,6 +20,10 @@ export const Button = styled.button<ButtonProps>`
   transition: all 0.25s ease-in-out;
   text-transform: uppercase;
   text-decoration: none;
+  &:focus {
+    outline: none;
+    border-color: ${({secondary = false}) => !secondary ? color("primary.400") : color("white.50")};
+  }
   &:hover {
     background-color: ${({secondary = false}) => !secondary ? color("primary.400") : color("white.50")};
     color: ${({secondary = false}) => !secondary ? color("white.50") : color("primary.400")};

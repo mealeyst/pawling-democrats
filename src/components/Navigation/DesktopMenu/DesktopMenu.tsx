@@ -34,7 +34,6 @@ export const DesktopMenu:FC<DesktopNavProps> = ({className, children }) => {
       borderColor: color("white.50"),
     }
   }
-  console.log(buttonColors)
   return (
     <Nav
       className={className}

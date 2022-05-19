@@ -16,7 +16,7 @@ export const Body = styled.section`
   margin-top: ${spacing(20)};
   max-width: 1440px;
   ${up('sm')`
-    margin-top: ${spacing(35)};
+    margin-top: 0;
   `}
 `
 

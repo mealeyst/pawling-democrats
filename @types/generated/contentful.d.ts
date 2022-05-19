@@ -33,6 +33,39 @@ export interface IBlogPost extends Entry<IBlogPostFields> {
   }
 }
 
+export interface IHeroFields {
+  /** Name */
+  name?: string | undefined
+
+  /** Display */
+  display?: 'Full Bleed' | 'Fit to Container' | 'Default Image Size' | undefined
+
+  /** Hero Image */
+  heroImage?: Asset | undefined
+
+  /** Content Region */
+  contentRegion?: Document | undefined
+}
+
+/** This content type designates a region of a webpage. It tends to have, but is not required to have a background image. */
+
+export interface IHero extends Entry<IHeroFields> {
+  sys: {
+    id: string
+    type: string
+    createdAt: string
+    updatedAt: string
+    locale: string
+    contentType: {
+      sys: {
+        id: 'hero'
+        linkType: 'ContentType'
+        type: 'Link'
+      }
+    }
+  }
+}
+
 export interface INavigationMenuFields {
   /** Name */
   name?: string | undefined
@@ -90,7 +123,7 @@ export interface IPage extends Entry<IPageFields> {
   }
 }
 
-export type CONTENT_TYPE = 'blogPost' | 'navigationMenu' | 'page'
+export type CONTENT_TYPE = 'blogPost' | 'hero' | 'navigationMenu' | 'page'
 
 export type LOCALE_CODE = 'en-US'
 
