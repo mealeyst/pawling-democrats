@@ -1,6 +1,9 @@
 # Pawling Democrats
 This is a React/Styled Component project driven by Contentful.
 
+To see the site as it looks currently, visit:
+https://mealeyst.github.io/pawling-democrats/
+
 ## Installation
 To install the repository do the following:
 1. `git clone git@github.com:mealeyst/pawling-democrats.git`
