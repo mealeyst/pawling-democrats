@@ -16,9 +16,8 @@ export const Input = styled.input<InputProps>`
   box-sizing: border-box;
   outline: none;
   transition: border 0.25s ease-in-out;
-  border-radius: ${spacing(2)};
 
   &:focus {
-    border: ${spacing(0.5)} solid ${color("secondary.600")};
+    border: ${spacing(0.5)} solid ${color("white.50")};
   }
 `

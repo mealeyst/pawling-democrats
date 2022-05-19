@@ -1,13 +1,25 @@
-import { Link } from 'react-router-dom';
-import styled, { css, DefaultTheme, StyledProps, ThemeProps } from 'styled-components';
+import styled, { DefaultTheme, StyledProps, ThemeProps } from 'styled-components';
 import { color } from '../../theme/color';
-import { up } from '../../theme/mediaQueies';
 import { rem } from '../../theme/rem';
-import { shadow } from '../../theme/shadow';
 import { spacing } from '../../theme/spacing';
+import { Button } from '../Forms/Button';
+import { PawlingDemsIcon } from '../Icons/PawlingDemsIcon';
+import { NavigationLink } from './NavigationLink';
+
+type ButtonColors = {
+  color: string | (({ theme }: ThemeProps<DefaultTheme>) => string),
+  backgroundColor: string | (({ theme }: ThemeProps<DefaultTheme>) => string),
+  borderColor: string | (({ theme }: ThemeProps<DefaultTheme>) => string),
+  hover: {
+    color: string | (({ theme }: ThemeProps<DefaultTheme>) => string),
+    backgroundColor: string | (({ theme }: ThemeProps<DefaultTheme>) => string),
+    borderColor: string | (({ theme }: ThemeProps<DefaultTheme>) => string),
+  }
+}
 
 type NavProps = {
   backgroundColor?: string | (({ theme }: ThemeProps<DefaultTheme>) => string),
+  buttonColors?: ButtonColors,
   linkColor?: string | (({ theme }: ThemeProps<DefaultTheme>) => string),
   height?: number
 }
@@ -31,9 +43,20 @@ export const Nav = styled.nav<StyledProps<NavProps>>`
     margin-right: auto;
     width: 100%;
     height: 100%;
+    justify-content: space-between;
   }
-  a, a:visited {
+  ${PawlingDemsIcon}, ${NavigationLink}, ${NavigationLink}:visited {
     color: ${({ linkColor = color("primary.50")}) => linkColor};
+  }
+  ${Button} {
+    color: ${({buttonColors}) => (buttonColors && buttonColors.color) ? buttonColors.color : color("primary.400")};
+    background-color: ${({buttonColors}) => (buttonColors && buttonColors.backgroundColor) ? buttonColors.backgroundColor : color("white.50")};
+    border-color: ${({buttonColors}) => (buttonColors && buttonColors.borderColor) ? buttonColors.borderColor : color("primary.400")};
+    &:hover {
+      color: ${({buttonColors}) => (buttonColors && buttonColors.hover && buttonColors.hover.color) ? buttonColors.hover.color : color("white.50")};
+      background-color: ${({buttonColors}) => (buttonColors && buttonColors.hover && buttonColors.hover.backgroundColor) ? buttonColors.hover.backgroundColor : color("primary.400")};
+      border-color: ${({buttonColors}) => (buttonColors && buttonColors.hover && buttonColors.hover.borderColor) ? buttonColors.hover.borderColor : color("primary.400")};
+    }
   }
   @media (min-width: ${({theme}) => rem(theme.breakpoints['sm'])}) {
     padding: ${spacing(0, 4)};

@@ -13,9 +13,35 @@ export const DesktopMenu:FC<DesktopNavProps> = ({className, children }) => {
   const scrollYTarget = 25;
   const height = scrollY < scrollYTarget ? scrollYTarget : 20
   const backgroundColor = scrollY < scrollYTarget ? 'transparent' : color("primary.400")
-  const linkColor = scrollY < scrollYTarget ? color("black.400") : color("white.50")
+  const linkColor = scrollY < scrollYTarget ? color("primary.400") : color("white.50")
+  const buttonColors = scrollY < scrollYTarget ? {
+    color: color("primary.400"),
+    backgroundColor: color("white.50"),
+    borderColor: color("primary.400"),
+    hover: {
+      color: color("white.50"),
+      backgroundColor: color("primary.400"),
+      borderColor: color("primary.400"),
+    }
+  } :
+  {
+    color: color("white.50"),
+    backgroundColor: color("primary.400"),
+    borderColor: color("white.50"),
+    hover: {
+      color: color("primary.400"),
+      backgroundColor: color("white.50"),
+      borderColor: color("white.50"),
+    }
+  }
+  console.log(buttonColors)
   return (
-    <Nav className={className} height={height} backgroundColor={backgroundColor} linkColor={linkColor}>
+    <Nav
+      className={className}
+      height={height}
+      backgroundColor={backgroundColor}
+      buttonColors={buttonColors}
+      linkColor={linkColor}>
       <section>{children && children}</section>
     </Nav>
   )

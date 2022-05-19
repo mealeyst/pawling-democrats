@@ -18,7 +18,7 @@ export const Footer = styled(({className}) =>
           <Input secondary type="email" />
         </Label>
         <footer className="mt-2">
-          <Button>Submit</Button>
+          <Button secondary>Submit</Button>
         </footer>
       </form>
       <div className="social-region">

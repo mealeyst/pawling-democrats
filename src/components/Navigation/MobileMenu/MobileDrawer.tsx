@@ -6,6 +6,8 @@ import { color } from '../../../theme/color';
 import { shadow } from '../../../theme/shadow';
 import { spacing } from '../../../theme/spacing';
 import Portal from '../../Portal/Portal';
+import { NavigationLink } from '../NavigationLink';
+import { CloseButton } from './CloseButton';
 
 interface Props {
   show: boolean
@@ -37,4 +39,7 @@ export const MobileDrawer = styled(MobileDrawerBase)`
   right: 0;
   bottom: 0;
   ${translateStyles}
+  ${CloseButton}, ${CloseButton}:visited, ${NavigationLink}, ${NavigationLink}:visited {
+    color: ${color("primary.400")};
+  }
 `;

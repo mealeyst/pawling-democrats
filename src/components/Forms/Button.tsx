@@ -1,29 +1,28 @@
 import styled from "styled-components";
 import { color } from "../../theme/color";
 import { spacing } from "../../theme/spacing";
+type ButtonProps = {
+  secondary?: boolean
+  large?: boolean
+}
 
-export const Button = styled.button`
+export const Button = styled.button<ButtonProps>`
+  display: inline-block;
   position: relative;
-  background-color: ${color("white.50")};
-  color: ${color("grey.400")};
-  border-radius: ${spacing(2)};
-  padding: ${spacing(2, 3)};
+  background-color: ${({secondary = false}) => !secondary ? color("white.50") : color("primary.200")};
+  color: ${({secondary = false}) => !secondary ? color("primary.400") : color("white.50")};
+  border-color: ${({secondary = false}) => !secondary ? color("primary.200") : color("white.200")};
+  border-width: ${spacing(0.5)};
+  border-style: solid;
+  padding: ${({large = false}) => large ? spacing(4, 4): spacing(2, 3)};
   font-family: 'Inter', sans-serif;
   font-weight: 500;
-  &:after {
-    display: block;
-    position: absolute;
-    content: "";
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: ${spacing(2)};
-    transition: opacity 0.25s ease-in-out;
-    opacity: 0;
-    box-shadow: 0px 0px 0px 2px  ${color("primary.400")}, 0px 0px 0px 4px  ${color("white.50")};
-  }
-  &:active::after, &:focus::after {
-    opacity: 1;
+  transition: all 0.25s ease-in-out;
+  text-transform: uppercase;
+  text-decoration: none;
+  &:hover {
+    background-color: ${({secondary = false}) => !secondary ? color("primary.400") : color("white.50")};
+    color: ${({secondary = false}) => !secondary ? color("white.50") : color("primary.400")};
+    border-color: ${({secondary = false}) => !secondary ? color("white.50") : color("primary.400")};
   }
 `
