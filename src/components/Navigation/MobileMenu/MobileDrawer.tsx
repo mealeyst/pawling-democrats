@@ -1,7 +1,9 @@
 import React, { FC, HTMLAttributes } from 'react';
 import styled from 'styled-components';
 import { useDelayUnmount } from '../../../hooks/useDelayedUnmount';
-import { Translate, translateStyles, TranslationProps, translations } from '../../../theme/Animations/Translate';
+import {
+  Translate, translateStyles, TranslationProps, translations,
+} from '../../../theme/Animations/Translate';
 import { color } from '../../../theme/color';
 import { shadow } from '../../../theme/shadow';
 import { spacing } from '../../../theme/spacing';
@@ -13,14 +15,14 @@ interface Props {
   show: boolean
 }
 
-const MobileDrawerBase: FC<Props & TranslationProps & HTMLAttributes<HTMLMenuElement>> = ({duration, show, ...props}) => {
+const MobileDrawerBase: FC<Props & TranslationProps & HTMLAttributes<HTMLMenuElement>> = ({ duration, show, ...props }) => {
   const shouldRenderChild = useDelayUnmount(show, duration as number);
-  const menuProps = Object.assign({}, props);
+  const menuProps = { ...props };
   delete menuProps.translateInCoords;
   delete menuProps.translateOutCoords;
   if (shouldRenderChild) {
-    return(
-      <Portal id='mobile-drawer'>
+    return (
+      <Portal id="mobile-drawer">
         <menu {...menuProps} />
       </Portal>
     );
@@ -29,7 +31,7 @@ const MobileDrawerBase: FC<Props & TranslationProps & HTMLAttributes<HTMLMenuEle
 };
 
 export const MobileDrawer = styled(MobileDrawerBase)`
-  background-color: ${color("white.200")};
+  background-color: ${color('white.200')};
   margin: 0;
   padding: ${spacing(4)};
   box-shadow: ${shadow('shadow-2xl')};
@@ -40,6 +42,6 @@ export const MobileDrawer = styled(MobileDrawerBase)`
   bottom: 0;
   ${translateStyles}
   ${CloseButton}, ${CloseButton}:visited, ${NavigationLink}, ${NavigationLink}:visited {
-    color: ${color("primary.400")};
+    color: ${color('primary.400')};
   }
 `;

@@ -5,9 +5,9 @@ import { rem } from './rem';
 
 type Spacings = typeof THEME['spacing'][number];
 
-export const spacing = (...values: Spacings[]) =>
-  ({ theme }: StyledProps<unknown>) => {
+export const spacing = (...values: Spacings[]): ({ theme }: StyledProps<unknown>) => string =>
+  ({ theme }: StyledProps<unknown>): string => {
     const result = values.map((value) =>
-      rem(theme.baseFontSize * (value * 0.25))({theme})).join(' ');
+      rem(theme.baseFontSize * (value * 0.25))({ theme })).join(' ');
     return result;
-  }
+  };

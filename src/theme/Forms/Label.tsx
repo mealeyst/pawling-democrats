@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { spacing } from "../../theme/spacing";
-import { Input } from "./Input";
+import styled from 'styled-components';
+import { spacing } from '../spacing';
+import { Input } from './Input';
 
 export const Label = styled.label`
   display: flex;
@@ -9,4 +9,4 @@ export const Label = styled.label`
   ${Input} {
     margin-top: ${spacing(1)};
   }
-`
+`;

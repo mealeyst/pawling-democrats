@@ -1,5 +1,6 @@
 require('dotenv').config();
-console.log(process.env)
+
+console.log(process.env);
 const contentfulManagement = require('contentful-management');
 
 // console.log('accessToken', process.env.CONTENTFUL_ACCESS_TOKEN);
@@ -11,5 +12,6 @@ module.exports = function () {
 
   return contentfulClient
     .getSpace(process.env.CONTENTFUL_SPACE_ID)
-    .then((space) => space.getEnvironment(process.env.CONTENTFUL_ENVIRONMENT));
+    .then((space) =>
+      space.getEnvironment(process.env.CONTENTFUL_ENVIRONMENT));
 };

@@ -1,6 +1,6 @@
-import { HTMLAttributes } from "react";
-import styled, { css, keyframes } from "styled-components";
-import { translate } from "../translate";
+import { HTMLAttributes } from 'react';
+import styled, { css, keyframes } from 'styled-components';
+import { translate } from '../translate';
 
 interface Props {
   duration?: number;
@@ -35,11 +35,13 @@ const shakeFrames = keyframes`
   100% {
     transform: ${translate('0px')};
   }
-`
+`;
 
 export const shakeStyles = css<Props>`
-animation: ${shakeFrames} ${({duration = 1000}) => duration}ms normal forwards ease-in-out;
-animation-iteration-count: ${({animationCount}) => animationCount};
+animation: ${shakeFrames} ${({ duration = 1000 }) =>
+  duration}ms normal forwards ease-in-out;
+animation-iteration-count: ${({ animationCount }) =>
+    animationCount};
 `;
 
 export const Shake = styled.div<Props & HTMLAttributes<HTMLDivElement>>`

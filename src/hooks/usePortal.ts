@@ -12,10 +12,10 @@ function createRootElement(id: string) {
 
 /**
  * Appends element as last child of body.
- * @param {HTMLElement} rootElem 
+ * @param {HTMLElement} rootElem
  */
 function addRootElement(rootElem: Node) {
-  if(document.body.lastElementChild) {
+  if (document.body.lastElementChild) {
     document.body.insertBefore(
       rootElem,
       document.body.lastElementChild.nextElementSibling,
@@ -35,8 +35,8 @@ function addRootElement(rootElem: Node) {
  * @returns {HTMLElement} The DOM node to use as the Portal target.
  */
 function usePortal(id:string) {
-  const rootElemRef = useRef() as MutableRefObject<HTMLDivElement>;;
-  useEffect(function setupElement() {
+  const rootElemRef = useRef() as MutableRefObject<HTMLDivElement>;
+  useEffect(() => {
     // Look for existing target dom element to append to
     const existingParent = document.querySelector(`#${id}`);
     // Parent is either a new root or the existing dom element

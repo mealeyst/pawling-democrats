@@ -7,4 +7,4 @@ export const LinkListItem = styled.li`
   ${up('sm')`
     margin: ${spacing(0, 4)};
   `}
-`
+`;

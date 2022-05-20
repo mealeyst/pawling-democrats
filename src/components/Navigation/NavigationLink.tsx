@@ -27,4 +27,4 @@ export const NavigationLink = styled(Link)`
       }
     }
   `}
-`
+`;
