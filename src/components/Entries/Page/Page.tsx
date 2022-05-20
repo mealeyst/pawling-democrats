@@ -34,10 +34,10 @@ export const Page = () => {
       data && setBody(data[0].fields.body as Document);
     })();
   }, [slug]);
-
+  const desktopMarginTop = !(body?.content[0]?.nodeType === "embedded-entry-block")
   return (
     <main>
-      <Body>
+      <Body desktopMarginTop={desktopMarginTop}>
         {body && documentToReactComponents(body as Document)}
       </Body>
     </main>

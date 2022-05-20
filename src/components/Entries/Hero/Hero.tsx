@@ -26,7 +26,7 @@ export const Hero = styled(({ className, fields }: HeroProps) =>
   position: relative;
   right: 50%;
   width: 100vw;
-  background-image: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.85) 55%, rgba(0,0,0,0) 100%), url(${({ fields: { heroImage } }) =>
+  background-image: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.75) 40%, rgba(0,0,0,0) 100%), url(${({ fields: { heroImage } }) =>
     heroImage && fetchAssetURL(heroImage)});
   padding-top: ${({ fields: { heroImage } }) =>
     heroImage && getAspectRatio(heroImage)}%;

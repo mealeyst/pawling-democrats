@@ -1,3 +1,4 @@
+import { useMediaQuery as useReactHookMediaQuery } from '@react-hook/media-query';
 import {
   css,
   StyledProps,
@@ -5,6 +6,7 @@ import {
   DefaultTheme,
   ThemedStyledProps,
   FlattenInterpolation,
+  useTheme,
 } from 'styled-components';
 
 import { Theme } from './Theme';
@@ -52,3 +54,9 @@ export const up = <Props extends Record<string, unknown>>(breakpoint: Breakpoint
       ${css<Props>(template, ...values)}
     }
   `;
+
+export const useMediaQuery = (breakpoint: BreakpointPath, minWidth = true) => {
+  const theme = useTheme()
+  const query = minWidth ?  `(min-width: ${rem(theme.breakpoints[breakpoint])({theme})})` : `(max-width: ${rem(theme.breakpoints[breakpoint])({theme})})`;
+  return useReactHookMediaQuery(query)
+};

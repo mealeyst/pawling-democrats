@@ -5,7 +5,7 @@ import {
 } from '@contentful/rich-text-types';
 import { documentToReactComponents as defaultDocumentToReactComponents, Options } from '@contentful/rich-text-react-renderer';
 
-import { CONTENT_TYPE, IHeroFields } from '../../../@types/generated/contentful';
+import { IHeroFields } from '../../../@types/generated/contentful';
 import * as Typography from '../../theme/Typography';
 import { Image } from '../Assets/Image';
 import { Hero } from '../Entries/Hero/Hero';
@@ -19,10 +19,10 @@ const renderEmbededAsset = (node: Block | Inline) => {
   if (embeddedAsset && embeddedAsset.fields && embeddedAsset.fields.file.contentType.includes('image')) {
     return <Image {...embeddedAsset} />;
   }
+  return null
 };
 
 const renderEmbededEntry = (node: Block | Inline) => {
-  console.log(node);
   const renderEntry = {
     [EMBEDDABLE_ENTRY.HERO]: (fields: IHeroFields) =>
       <Hero fields={fields} />,
