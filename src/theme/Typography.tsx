@@ -1,4 +1,4 @@
-import styled, { DefaultTheme, ThemedStyledProps } from 'styled-components';
+import styled, { css, DefaultTheme, ThemedStyledProps } from 'styled-components';
 import { up } from './mediaQueies';
 import { rem } from './rem';
 
@@ -20,7 +20,7 @@ export const Underline = styled.span`
   text-decoration: unerline;
 `;
 
-export const Title = styled.h1<TypographyProps>`
+export const TitleStyles = css<TypographyProps>`
   font-size: ${rem(40)};
   line-height: ${rem(56)};
   letter-spacing: -${rem(1)};
@@ -38,6 +38,10 @@ export const Title = styled.h1<TypographyProps>`
   ${Bold} {
     font-weight: 700;
   }
+`
+
+export const Title = styled.h1<TypographyProps>`
+  ${TitleStyles}
 `;
 
 export const H1 = styled.h1<TypographyProps>`

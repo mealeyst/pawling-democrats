@@ -8,7 +8,7 @@ import { useEntry } from '../../hooks/useEntry';
 import { PawlingDemsIcon } from '../Icons/PawlingDemsIcon';
 
 export const Navigation = () => {
-  const showMobileMenu = useMediaQuery('sm', false);
+  const showMobileMenu = useMediaQuery('md', false);
   const { data } = useEntry('1GjjrJGYkHlgrGltIHjrcU');
 
   return (

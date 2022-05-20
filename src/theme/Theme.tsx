@@ -129,6 +129,8 @@ export const GlobalStyles = createGlobalStyle`
     min-height: 100vh;
     margin: 0;
     overscroll-behavior: none;
+    display: grid;
+    grid-template-rows: 1fr auto;
   }
   hr {
     width: 100%;

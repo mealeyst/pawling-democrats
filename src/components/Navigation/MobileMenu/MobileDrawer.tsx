@@ -40,6 +40,7 @@ export const MobileDrawer = styled(MobileDrawerBase)`
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 11;
   ${translateStyles}
   ${CloseButton}, ${CloseButton}:visited, ${NavigationLink}, ${NavigationLink}:visited {
     color: ${color('primary.400')};
