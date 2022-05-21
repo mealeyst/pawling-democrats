@@ -7,10 +7,11 @@ import { Nav } from '..';
 import { CloseButton } from './CloseButton';
 import { MobileDrawerHeader } from './MobileDrawerHeader';
 import { translations } from '../../../theme/Animations/Translate';
-import { H5 } from '../../../theme/Typography';
 
 interface Props {
   children?: ReactElement
+  drawerOpen?: boolean,
+  setDrawer: (inState: boolean) => void
 }
 
 const defaultTranslateIn = {
@@ -35,27 +36,27 @@ const defaultTranslateOut = {
   },
 };
 
-export const MobileMenu: FC<Props> = ({ children }) => {
-  const [mobileDrawer, setMobileDrawer] = useState(false);
+export const MobileMenu: FC<Props> = ({ children, drawerOpen = false, setDrawer }) => {
+  
   const [animation, setAnimation] = useState<keyof typeof translations>('translateIn');
   useEffect(() => {
-    mobileDrawer ? setAnimation('translateIn') : setAnimation('translateOut');
-  }, [mobileDrawer]);
+    drawerOpen ? setAnimation('translateIn') : setAnimation('translateOut');
+  }, [drawerOpen]);
   return (
     <Nav>
       <HamburgerButton onClick={() =>
-        setMobileDrawer(true)}
+        setDrawer(true)}
       />
       <MobileDrawer
         animation={animation}
-        show={mobileDrawer}
+        show={drawerOpen}
         translateInCoords={defaultTranslateIn}
         translateOutCoords={defaultTranslateOut}
         duration={250}
       >
         <MobileDrawerHeader>
           <CloseButton onClick={() =>
-            setMobileDrawer(false)}
+            setDrawer(false)}
           >
             Close Menu
           </CloseButton>

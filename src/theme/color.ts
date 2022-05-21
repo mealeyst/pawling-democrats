@@ -10,6 +10,6 @@ const getColor = <T extends ColorPath>(
 ): GetFieldType<Theme['colors'], T> =>
     _get(theme.colors, colorPath);
 
-export const color = <T extends ColorPath>(colorPath: T) =>
+  export const color = <T extends ColorPath>(colorPath: T) =>
   ({ theme }: StyledProps<unknown>) =>
     getColor<T>(theme, colorPath);

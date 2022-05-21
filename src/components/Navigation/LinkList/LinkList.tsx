@@ -11,9 +11,10 @@ import { LinkListItem } from './LinkListItem';
 
 interface Props {
   data: Entry<INavigationMenuFields> | null
+  setDrawer: (drawerState: boolean) => void
 }
 
-export const LinkListView: FC<HTMLAttributes<HTMLUListElement> & Props> = ({ className, data }) =>
+export const LinkListView: FC<HTMLAttributes<HTMLUListElement> & Props> = ({ className, data, setDrawer }) =>
   (
     <ul className={className}>
       {data
@@ -22,7 +23,7 @@ export const LinkListView: FC<HTMLAttributes<HTMLUListElement> & Props> = ({ cla
           return (
             <LinkListItem key={menuItem.sys.id}>
               {menuItem.fields.slug !== 'donate' && (
-                <NavigationLink to={`/${menuItem.fields.slug}`}>{menuItem.fields.title}</NavigationLink>
+                <NavigationLink to={`/${menuItem.fields.slug}`} onClick={() => setDrawer(false)}>{menuItem.fields.title}</NavigationLink>
               )}
               {menuItem.fields.slug === 'donate' && (
                 <Button as={Link} to={`/${menuItem.fields.slug}`} large>

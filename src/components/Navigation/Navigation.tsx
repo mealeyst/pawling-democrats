@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MobileMenu } from './MobileMenu';
 import { useMediaQuery } from '../../theme/mediaQueies';
@@ -10,13 +10,14 @@ import { PawlingDemsIcon } from '../Icons/PawlingDemsIcon';
 export const Navigation = () => {
   const showMobileMenu = useMediaQuery('md', false);
   const { data } = useEntry('1GjjrJGYkHlgrGltIHjrcU');
+  const [drawerOpen, setDrawer] = useState(false);
 
   return (
     <>
       {showMobileMenu
         && (
-        <MobileMenu>
-          <LinkList data={data} />
+        <MobileMenu drawerOpen={drawerOpen} setDrawer={setDrawer}>
+          <LinkList data={data} setDrawer={setDrawer} />
         </MobileMenu>
         )}
       {!showMobileMenu
