@@ -40,6 +40,7 @@ export const Footer = styled(({ className }) =>
   width: 100vw;
   box-sizing: border-box;
   min-height: ${spacing(30)};
+  margin-top: ${spacing(10)};
   padding: ${spacing(10, 4)};
   .footer-content {
     max-width: 1440px;
