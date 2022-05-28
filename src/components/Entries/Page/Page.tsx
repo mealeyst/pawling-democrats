@@ -31,11 +31,13 @@ export const Page = () => {
       const data = await getEntries({
         content_type: 'page',
         'fields.slug': slug === 'pawling-democrats' ? 'home' : slug,
+        include: 10
       }) as Entry<IPageFields>[];
       data && setBody(data[0].fields.body as Document);
     })();
   }, [slug]);
   const desktopMarginTop = !(body?.content[0]?.nodeType === "embedded-entry-block")
+  console.log(body)
   return (
     <main>
       <Body desktopMarginTop={desktopMarginTop}>

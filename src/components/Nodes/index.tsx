@@ -5,15 +5,17 @@ import {
 } from '@contentful/rich-text-types';
 import { documentToReactComponents as defaultDocumentToReactComponents, Options } from '@contentful/rich-text-react-renderer';
 
-import { ICardFields, IHeroFields } from '../../../@types/generated/contentful';
+import { ICardFields, IDeckFields, IHeroFields } from '../../../@types/generated/contentful';
 import * as Typography from '../../theme/Typography';
 import { Image } from '../Assets/Image';
 import { Hero } from '../Entries/Hero/Hero';
-import { Card } from '../Card/Card';
+import { Card } from '../Entries/Card/Card';
+import { Deck } from '../Entries/Deck/Deck';
 
 const EMBEDDABLE_ENTRY = {
+  CARD: 'card',
+  DECK: 'deck',
   HERO: 'hero',
-  CARD: 'card'
 };
 
 const renderEmbededAsset = (node: Block | Inline) => {
@@ -28,7 +30,8 @@ const renderEmbededEntry = (node: Block | Inline) => {
   const renderEntry = {
     [EMBEDDABLE_ENTRY.HERO]: (fields: IHeroFields) =>
       <Hero fields={fields} />,
-    [EMBEDDABLE_ENTRY.CARD]: (fields: ICardFields) => <Card fields={fields} />
+    [EMBEDDABLE_ENTRY.CARD]: (fields: ICardFields) => <Card fields={fields} />,
+    [EMBEDDABLE_ENTRY.DECK]: (fields:IDeckFields) => <Deck fields={fields} />
   };
   return renderEntry[node.data.target.sys.contentType.sys.id](node.data.target.fields);
 };

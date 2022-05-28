@@ -44,28 +44,32 @@ export const Title = styled.h1<TypographyProps>`
   ${TitleStyles}
 `;
 
-export const H1 = styled.h1<TypographyProps>`
-  font-size: ${rem(32)};
-  line-height: ${rem(44)};
-  font-weight: ${({ bold = 'normal' }) =>
-    (bold === 'normal' ? 500 : 700)};
-  text-decoration: ${({ underline = 'none' }) =>
-    underline};
-  font-style: ${({ italic = 'normal' }) =>
-    italic};
-  text-transform: uppercase;
-  ${up('md')`
-    font-size: ${rem(40)};
-    line-height: ${rem(56)};
-    letter-spacing: -${rem(1)};
-  `}
-  ${Bold} {
-    font-weight: 700;
-  }
+export const H1Styles = css<TypographyProps>`
+font-size: ${rem(32)};
+line-height: ${rem(44)};
+font-weight: ${({ bold = 'normal' }) =>
+  (bold === 'normal' ? 500 : 700)};
+text-decoration: ${({ underline = 'none' }) =>
+  underline};
+font-style: ${({ italic = 'normal' }) =>
+  italic};
+text-transform: uppercase;
+${up('md')`
+  font-size: ${rem(40)};
+  line-height: ${rem(56)};
+  letter-spacing: -${rem(1)};
+`}
+${Bold} {
+  font-weight: 700;
+}
 `;
 
-export const H2 = styled.h2<TypographyProps>`
-  font-size: ${rem(24)};
+export const H1 = styled.h1<TypographyProps>`
+  ${H1Styles}
+`;
+
+export const H2Styles = css<TypographyProps>`
+font-size: ${rem(24)};
   line-height: ${rem(34)};
   font-weight: ${({ bold = 'normal' }) =>
     (bold === 'normal' ? 500 : 700)};
@@ -81,6 +85,10 @@ export const H2 = styled.h2<TypographyProps>`
   ${Bold} {
     font-weight: 700;
   }
+`
+
+export const H2 = styled.h2<TypographyProps>`
+  ${H2Styles}
 `;
 
 export const H3 = styled.h3<TypographyProps>`
