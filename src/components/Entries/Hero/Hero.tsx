@@ -8,7 +8,7 @@ import { fetchAssetURL, getAspectRatio } from '../../Assets/utils';
 import { H1, TitleStyles } from '../../../theme/Typography';
 import { color } from '../../../theme/color';
 import { spacing } from '../../../theme/spacing';
-import { up } from '../../../theme/mediaQueies';
+import { query } from '../../../theme/mediaQueies';
 
 type HeroProps = {
   className?: string
@@ -59,16 +59,16 @@ export const Hero = styled(({ className, fields }: HeroProps) =>
     grid-row-end: 11;
     justify-content: center;
     margin: ${spacing(0, 4)};
-    ${up('md')`
+    ${query('md')}{
       grid-column-start: 1;
       grid-column-end: span 8;
       grid-row-start: 2;
       grid-row-end: span 6;
-    `}
+    }
     ${H1} {
-      ${up('md')`
+      ${query('md')}{
         ${TitleStyles}
-      `}
+      }
     }
     h1,h2, h3, h4, h5, h6, p {
       margin: 0;

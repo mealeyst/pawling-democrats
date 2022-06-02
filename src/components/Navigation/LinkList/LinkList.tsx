@@ -2,16 +2,16 @@ import { Entry } from 'contentful';
 import React, { FC, HTMLAttributes } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { INavigationMenuFields } from '../../../../@types/generated/contentful';
+import { INavigationMenu } from '../../../../@types/generated/contentful';
 import { isIPage } from '../../../../@types/IPage';
-import { up } from '../../../theme/mediaQueies';
+import { query } from '../../../theme/mediaQueies';
 import { Button } from '../../../theme/Forms';
 import { NavigationLink } from '../NavigationLink';
 import { LinkListItem } from './LinkListItem';
 
 interface Props {
-  data: Entry<INavigationMenuFields> | null
-  setDrawer: (drawerState: boolean) => void
+  data: INavigationMenu | null
+  setDrawer?: (drawerState: boolean) => void | undefined
 }
 
 export const LinkListView: FC<HTMLAttributes<HTMLUListElement> & Props> = ({ className, data, setDrawer }) =>
@@ -23,7 +23,7 @@ export const LinkListView: FC<HTMLAttributes<HTMLUListElement> & Props> = ({ cla
           return (
             <LinkListItem key={menuItem.sys.id}>
               {menuItem.fields.slug !== 'donate' && (
-                <NavigationLink to={`/${menuItem.fields.slug}`} onClick={() => setDrawer(false)}>{menuItem.fields.title}</NavigationLink>
+                <NavigationLink to={`/${menuItem.fields.slug}`} onClick={() => (setDrawer !== undefined) && setDrawer(false)}>{menuItem.fields.title}</NavigationLink>
               )}
               {menuItem.fields.slug === 'donate' && (
                 <Button as={Link} to={`/${menuItem.fields.slug}`} large>
@@ -45,11 +45,11 @@ export const LinkList = styled(LinkListView)`
   padding: 0;
   margin: 0;
   width: 100%;
-  ${up('sm')`
+  ${query('sm')}{
     grid-column-start: 2;
     grid-column-end: 12;
     flex-direction: row;
     width: auto;
     align-items: center;
-  `}
+  }
 `;

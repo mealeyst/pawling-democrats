@@ -4,13 +4,17 @@ import { color } from './color';
 import { spacing } from './spacing';
 import { Join, PathsToStringProps } from './types';
 
+const minWidthQuery = (minWidth: number) =>
+  `@media (min-width: ${minWidth}px)`;
+
+
 export const THEME = {
   baseFontSize: 16,
   breakpoints: {
-    sm: 480,
-    md: 768,
-    lg: 1024,
-    xl: 1200,
+    sm: minWidthQuery(480),
+    md: minWidthQuery(768),
+    lg: minWidthQuery(1024),
+    xl: minWidthQuery(1200),
   },
   colors: {
     primary: {
@@ -114,6 +118,8 @@ export type ColorSet<T extends ColorSetKey = ColorSetKey> = Theme['colors'][T]
 export type ColorKey<T extends ColorSet = ColorSet> = T extends ColorSet ? keyof T : never
 
 export type ColorPath = Join<PathsToStringProps<Theme['colors']>, '.'>
+
+export type BreakpointPath = Join<PathsToStringProps<Theme['breakpoints']>, '.'>
 
 declare module 'styled-components' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface,@typescript-eslint/no-unused-vars

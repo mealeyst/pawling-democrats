@@ -6,20 +6,24 @@ import { Entry } from 'contentful';
 import styled, { css } from 'styled-components';
 import { documentToReactComponents } from '../../Nodes';
 import { IPageFields } from '../../../../@types/generated/contentful';
-import { up } from '../../../theme/mediaQueies';
+import { query } from '../../../theme/mediaQueies';
 import { spacing } from '../../../theme/spacing';
 import { getEntries } from '../../../services/Contentful';
 
-export const Body = styled.section`
+type BodyProps = {
+  desktopMarginTop?: boolean
+}
+
+export const Body = styled.section<BodyProps>`
   margin-left: auto;
   margin-right: auto;
   padding: ${spacing(0, 4)};
-  margin-top: ${spacing(15)};
+  margin-top: ${spacing(24)};
   max-width: 1440px;
-  ${up('md')`
+  ${query('md')}{
     ${({ desktopMarginTop = true }) =>
     (desktopMarginTop ? css`margin-top: ${spacing(35)};` : css`margin-top: 0;`)}
-  `}
+  }
 `;
 
 export const Page = () => {

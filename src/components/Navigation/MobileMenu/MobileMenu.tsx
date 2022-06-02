@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import React, {
   FC, ReactElement, useEffect, useState,
 } from 'react';
@@ -7,8 +8,10 @@ import { Nav } from '..';
 import { CloseButton } from './CloseButton';
 import { MobileDrawerHeader } from './MobileDrawerHeader';
 import { translations } from '../../../theme/Animations/Translate';
+import { query } from '../../../theme/mediaQueies';
 
 interface Props {
+  className?: string
   children?: ReactElement
   drawerOpen?: boolean,
   setDrawer: (inState: boolean) => void
@@ -36,14 +39,14 @@ const defaultTranslateOut = {
   },
 };
 
-export const MobileMenu: FC<Props> = ({ children, drawerOpen = false, setDrawer }) => {
+export const MobileMenu = styled(({ className, children, drawerOpen = false, setDrawer }) => {
   
   const [animation, setAnimation] = useState<keyof typeof translations>('translateIn');
   useEffect(() => {
     drawerOpen ? setAnimation('translateIn') : setAnimation('translateOut');
   }, [drawerOpen]);
   return (
-    <Nav>
+    <Nav className={className}>
       <HamburgerButton onClick={() =>
         setDrawer(true)}
       />
@@ -65,4 +68,9 @@ export const MobileMenu: FC<Props> = ({ children, drawerOpen = false, setDrawer 
       </MobileDrawer>
     </Nav>
   );
-};
+})`
+  display: block;
+  ${query('md')}{
+    display: none;
+  }
+`;

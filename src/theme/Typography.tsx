@@ -1,5 +1,5 @@
 import styled, { css, DefaultTheme, ThemedStyledProps } from 'styled-components';
-import { up } from './mediaQueies';
+import { query } from './mediaQueies';
 import { rem } from './rem';
 
 export type TypographyProps = ThemedStyledProps<Record<string, unknown>, DefaultTheme> & {
@@ -31,10 +31,10 @@ export const TitleStyles = css<TypographyProps>`
   font-style: ${({ italic = 'normal' }) =>
     italic};
   text-transform: uppercase;
-  ${up('md')`
+  ${query('md')}{
     font-size: ${rem(56)};
     line-height: ${rem(72)};
-  `}
+  }
   ${Bold} {
     font-weight: 700;
   }
@@ -54,11 +54,11 @@ text-decoration: ${({ underline = 'none' }) =>
 font-style: ${({ italic = 'normal' }) =>
   italic};
 text-transform: uppercase;
-${up('md')`
+${query('md')}{
   font-size: ${rem(40)};
   line-height: ${rem(56)};
   letter-spacing: -${rem(1)};
-`}
+}
 ${Bold} {
   font-weight: 700;
 }
@@ -78,10 +78,10 @@ font-size: ${rem(24)};
   font-style: ${({ italic = 'normal' }) =>
     italic};
   text-transform: uppercase;
-  ${up('md')`
+  ${query('md')}{
     font-size: ${rem(28)};
     line-height: ${rem(38)};
-  `}
+  }
   ${Bold} {
     font-weight: 700;
   }
@@ -101,10 +101,10 @@ export const H3 = styled.h3<TypographyProps>`
   font-style: ${({ italic = 'normal' }) =>
     italic};
   text-transform: uppercase;
-  ${up('md')`
+  ${query('md')}{
     font-size: ${rem(18)};
     line-height: ${rem(24)};
-  `}
+  }
   ${Bold} {
     font-weight: 700;
   }
@@ -120,10 +120,10 @@ export const H4 = styled.h4<TypographyProps>`
   font-style: ${({ italic = 'normal' }) =>
     italic};
   text-transform: uppercase;
-  ${up('md')`
+  ${query('md')}{
     font-size: ${rem(16)};
     line-height: ${rem(18)};
-  `}
+  }
   ${Bold} {
     font-weight: 700;
   }

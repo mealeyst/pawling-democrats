@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons';
 import { color } from '../../theme/color';
-import { up } from '../../theme/mediaQueies';
+import { query } from '../../theme/mediaQueies';
 import { spacing } from '../../theme/spacing';
 import { Button, Input, Label } from '../../theme/Forms';
 import { PawlingDemIconWithText } from '../Icons/PawlingDemIconWithText';
@@ -47,28 +47,32 @@ export const Footer = styled(({ className }) =>
     display: grid;
     margin: auto;
     display: grid;
-    ${up('md')`
-    grid-template-columns: repeat(8, 1fr);
-    gap: ${spacing(6)};
-    .logo {
-      grid-column-start: 1;
-      grid-column-end: 5;
-    }
     .contact {
-      grid-column-start: 5;
-      grid-column-end: 9;
+      margin: ${spacing(10, 0)};
     }
-    .social-region {
-      grid-column-start: 3;
-      grid-column-end: 7;
-      justify-content: center;
+    ${query('md')}{
+      grid-template-columns: repeat(8, 1fr);
+      gap: ${spacing(6)};
+      .logo {
+        grid-column-start: 1;
+        grid-column-end: 5;
+      }
+      .contact {
+        grid-column-start: 5;
+        grid-column-end: 9;
+        margin: ${spacing(0)};
+      }
+      .social-region {
+        grid-column-start: 3;
+        grid-column-end: 7;
+        justify-content: center;
+      }
+      .copyright-info {
+        grid-column-start: 1;
+        grid-column-end: 9;
+      }
     }
-    .copyright-info {
-      grid-column-start: 1;
-      grid-column-end: 9;
-    }
-  `}
-    ${up('lg')`
+    ${query('lg')}{
       grid-template-columns: repeat(12, 1fr);
       gap: ${spacing(6)};
       .logo {
@@ -95,12 +99,12 @@ export const Footer = styled(({ className }) =>
         grid-row-start: 3;
         grid-row-end: 4;
       }
-    `}
+    }
     ${PawlingDemIconWithText}{
       width: 80%;
-      ${up('md')`
+      ${query('md')}{
         width: 100%;
-      `}
+      }
     }
     .copyright-info {
       border-top: ${spacing(0.5)} solid ${color('white.50')};

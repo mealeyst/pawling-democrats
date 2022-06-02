@@ -5,6 +5,7 @@ import { spacing } from '../../theme/spacing';
 import { Button } from '../../theme/Forms/Button';
 import { PawlingDemsIcon } from '../Icons/PawlingDemsIcon';
 import { NavigationLink } from './NavigationLink';
+import { query } from '../../theme/mediaQueies';
 
 type ButtonColors = {
   color: string | (({ theme }: ThemeProps<DefaultTheme>) => string),
@@ -68,8 +69,7 @@ export const Nav = styled.nav<StyledProps<NavProps>>`
     ((buttonColors && buttonColors.hover && buttonColors.hover.borderColor) ? buttonColors.hover.borderColor : color('primary.400'))};
     }
   }
-  @media (min-width: ${({ theme }) =>
-    rem(theme.breakpoints.sm)}) {
+  ${query('sm')}{
     padding: ${spacing(0, 4)};
     a {
       display: flex;

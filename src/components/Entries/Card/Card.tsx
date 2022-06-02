@@ -18,7 +18,7 @@ export type CardProps = {
 export const Card = styled(({className, fields: { image, title, body }}: CardProps) => {
   return (
     <div className={className}>
-      { image && <Image {...image} api={{width: 300, focus: 'face', fit: 'fill'}}/> }
+      { image && <Image {...image} api={{width: 300, height: 300, focus: 'face', fit: 'fill'}}/> }
       <span className="card-title">{title}</span>
       {body && documentToReactComponents(body as Document)}
     </div>

@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { color } from '../../theme/color';
-import { up } from '../../theme/mediaQueies';
+import { query } from '../../theme/mediaQueies';
 import { rem } from '../../theme/rem';
 
 export const NavigationLink = styled(Link)`
   text-decoration: none;
 
-  ${up('sm')`
+  ${query('sm')}{
     position: relative;
     padding-bottom: ${rem(2)};
     transition: color, 0.25s ease-in-out;
@@ -26,5 +26,5 @@ export const NavigationLink = styled(Link)`
         background-color: ${color('white.200')};
       }
     }
-  `}
+  }
 `;
