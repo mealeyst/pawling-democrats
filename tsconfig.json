@@ -37,7 +37,7 @@
   },
   "include": [
     "src"
-  ],
+, "util"  ],
   "exclude": [
     "src/**/*.test.ts",
     "src/**/*.test.tsx",

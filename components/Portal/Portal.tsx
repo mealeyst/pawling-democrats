@@ -1,9 +1,9 @@
-import { FC, ReactElement } from 'react';
-import { createPortal } from 'react-dom';
-import usePortal from '../hooks/usePortal';
+import { FC, ReactElement } from 'react'
+import { createPortal } from 'react-dom'
+import usePortal from '../hooks/usePortal'
 
 interface Props {
-  id: string,
+  id: string
   children: ReactElement
 }
 
@@ -14,11 +14,8 @@ interface Props {
  * </Portal>
  */
 const Portal: FC<Props> = ({ id, children }) => {
-  const target = usePortal(id);
-  return createPortal(
-    children,
-    target,
-  );
-};
+  const target = usePortal(id)
+  return createPortal(children, target)
+}
 
-export default Portal;
+export default Portal

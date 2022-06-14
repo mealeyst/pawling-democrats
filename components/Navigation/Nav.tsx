@@ -1,35 +1,35 @@
-import styled, { DefaultTheme, StyledProps, ThemeProps } from 'styled-components';
-import { color } from '../theme/color';
-import { rem } from '../theme/rem';
-import { spacing } from '../theme/spacing';
-import { Button } from '../theme/Forms/Button';
-import { PawlingDemsIcon } from '../Icons/PawlingDemsIcon';
-import { NavigationLink } from './NavigationLink';
-import { query } from '../theme/mediaQueies';
+import styled, {
+  DefaultTheme,
+  StyledProps,
+  ThemeProps,
+} from 'styled-components'
+import { color } from '../theme/color'
+import { spacing } from '../theme/spacing'
+import { Button } from '../theme/Forms/Button'
+import { query } from '../theme/mediaQueies'
 
 type ButtonColors = {
-  color: string | (({ theme }: ThemeProps<DefaultTheme>) => string),
-  backgroundColor: string | (({ theme }: ThemeProps<DefaultTheme>) => string),
-  borderColor: string | (({ theme }: ThemeProps<DefaultTheme>) => string),
+  color: string | (({ theme }: ThemeProps<DefaultTheme>) => string)
+  backgroundColor: string | (({ theme }: ThemeProps<DefaultTheme>) => string)
+  borderColor: string | (({ theme }: ThemeProps<DefaultTheme>) => string)
   hover: {
-    color: string | (({ theme }: ThemeProps<DefaultTheme>) => string),
-    backgroundColor: string | (({ theme }: ThemeProps<DefaultTheme>) => string),
-    borderColor: string | (({ theme }: ThemeProps<DefaultTheme>) => string),
+    color: string | (({ theme }: ThemeProps<DefaultTheme>) => string)
+    backgroundColor: string | (({ theme }: ThemeProps<DefaultTheme>) => string)
+    borderColor: string | (({ theme }: ThemeProps<DefaultTheme>) => string)
   }
 }
 
 type NavProps = {
-  backgroundColor?: string | (({ theme }: ThemeProps<DefaultTheme>) => string),
-  buttonColors?: ButtonColors,
-  linkColor?: string | (({ theme }: ThemeProps<DefaultTheme>) => string),
+  backgroundColor?: string | (({ theme }: ThemeProps<DefaultTheme>) => string)
+  buttonColors?: ButtonColors
+  linkColor?: string | (({ theme }: ThemeProps<DefaultTheme>) => string)
   height?: number
 }
 
 export const Nav = styled.nav<StyledProps<NavProps>>`
   display: flex;
   align-items: center;
-  height: ${({ height = 15 }) =>
-    spacing(height)};
+  height: ${({ height = 15 }) => spacing(height)};
   grid-template-rows: auto;
   width: 100%;
   background-color: ${({ backgroundColor = color('primary.400') }) =>
@@ -51,32 +51,44 @@ export const Nav = styled.nav<StyledProps<NavProps>>`
   }
   ${Button} {
     color: ${({ buttonColors }) =>
-    ((buttonColors && buttonColors.color) ? buttonColors.color : color('primary.400'))};
+      buttonColors && buttonColors.color
+        ? buttonColors.color
+        : color('primary.400')};
     background-color: ${({ buttonColors }) =>
-    ((buttonColors && buttonColors.backgroundColor) ? buttonColors.backgroundColor : color('white.50'))};
+      buttonColors && buttonColors.backgroundColor
+        ? buttonColors.backgroundColor
+        : color('white.50')};
     border-color: ${({ buttonColors }) =>
-    ((buttonColors && buttonColors.borderColor) ? buttonColors.borderColor : color('primary.400'))};
+      buttonColors && buttonColors.borderColor
+        ? buttonColors.borderColor
+        : color('primary.400')};
     &:hover {
       color: ${({ buttonColors }) =>
-    ((buttonColors && buttonColors.hover && buttonColors.hover.color) ? buttonColors.hover.color : color('white.50'))};
+        buttonColors && buttonColors.hover && buttonColors.hover.color
+          ? buttonColors.hover.color
+          : color('white.50')};
       background-color: ${({ buttonColors }) =>
-    ((buttonColors && buttonColors.hover && buttonColors.hover.backgroundColor) ? buttonColors.hover.backgroundColor : color('primary.400'))};
+        buttonColors && buttonColors.hover && buttonColors.hover.backgroundColor
+          ? buttonColors.hover.backgroundColor
+          : color('primary.400')};
       border-color: ${({ buttonColors }) =>
-    ((buttonColors && buttonColors.hover && buttonColors.hover.borderColor) ? buttonColors.hover.borderColor : color('primary.400'))};
+        buttonColors && buttonColors.hover && buttonColors.hover.borderColor
+          ? buttonColors.hover.borderColor
+          : color('primary.400')};
     }
   }
-  ${query('sm')}{
+  ${query('sm')} {
     padding: ${spacing(0, 4)};
     a {
       display: flex;
       align-items: center;
     }
   }
-  ${query('md')}{
-    a, a:visited {
-      color: ${({ linkColor = color('primary.50') }) =>
-      linkColor};
+  ${query('md')} {
+    a,
+    a:visited {
+      color: ${({ linkColor = color('primary.50') }) => linkColor};
       text-decoration: none;
     }
   }
-`;
+`

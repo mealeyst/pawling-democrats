@@ -1,4 +1,3 @@
-import { Sys } from 'contentful';
+import { Sys } from 'contentful'
 
-export const isHero = (sys: Sys): boolean =>
-  sys.contentType.sys.id === 'hero';
+export const isHero = (sys: Sys): boolean => sys.contentType.sys.id === 'hero'

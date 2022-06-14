@@ -1,12 +1,10 @@
-import React, { FC, ReactChild } from 'react';
-import { createGlobalStyle, css, ThemeProvider } from 'styled-components';
-import { color } from './color';
-import { spacing } from './spacing';
-import { Join, PathsToStringProps } from './types';
+import React, { FC, ReactChild } from 'react'
+import { createGlobalStyle, css, ThemeProvider } from 'styled-components'
+import { color } from './color'
+import { spacing } from './spacing'
+import { Join, PathsToStringProps } from './types'
 
-const minWidthQuery = (minWidth: number) =>
-  `@media (min-width: ${minWidth}px)`;
-
+const minWidthQuery = (minWidth: number) => `@media (min-width: ${minWidth}px)`
 
 export const THEME = {
   baseFontSize: 16,
@@ -64,9 +62,12 @@ export const THEME = {
   shadow: {
     'shadow-sm': '0 1px 2px 0 hsl(218, 74%, 15%)',
     shadow: '0 1px 3px 0 hsl(218, 74%, 15%), 0 1px 2px -1px hsl(218, 74%, 15%)',
-    'shadow-md': '0 4px 6px -1px hsl(218, 74%, 15%), 0 2px 4px -2px hsl(218, 74%, 15%)',
-    'shadow-lg': '0 10px 15px -3px hsl(218, 74%, 15%), 0 4px 6px -4px hsl(218, 74%, 15%)',
-    'shadow-xl': '0 20px 25px -5px hsl(218, 74%, 15%), 0 8px 10px -6px hsl(218, 74%, 15%)',
+    'shadow-md':
+      '0 4px 6px -1px hsl(218, 74%, 15%), 0 2px 4px -2px hsl(218, 74%, 15%)',
+    'shadow-lg':
+      '0 10px 15px -3px hsl(218, 74%, 15%), 0 4px 6px -4px hsl(218, 74%, 15%)',
+    'shadow-xl':
+      '0 20px 25px -5px hsl(218, 74%, 15%), 0 8px 10px -6px hsl(218, 74%, 15%)',
     'shadow-2xl': '0 25px 50px -12px hsl(218, 74%, 15%)',
     'shadow-inner': 'inset 0 2px 4px 0 hsl(218, 74%, 15%)',
     'shadow-none': '0 0 #0000',
@@ -107,7 +108,7 @@ export const THEME = {
     80,
     96,
   ],
-};
+}
 
 export type Theme = typeof THEME
 
@@ -115,7 +116,9 @@ export type ColorSetKey = keyof Theme['colors']
 
 export type ColorSet<T extends ColorSetKey = ColorSetKey> = Theme['colors'][T]
 
-export type ColorKey<T extends ColorSet = ColorSet> = T extends ColorSet ? keyof T : never
+export type ColorKey<T extends ColorSet = ColorSet> = T extends ColorSet
+  ? keyof T
+  : never
 
 export type ColorPath = Join<PathsToStringProps<Theme['colors']>, '.'>
 
@@ -171,18 +174,17 @@ export const GlobalStyles = createGlobalStyle`
         .pb-${space} {
           padding-bottom: ${spacing(space)};
         }
-      `,
+      `
   )}
-`;
+`
 
 interface Props {
   children: ReactChild | JSX.Element[]
 }
 
-export const BlueTheme: FC<Props> = ({ children }) =>
-  (
-    <ThemeProvider theme={THEME}>
-      <GlobalStyles />
-      {children}
-    </ThemeProvider>
-  );
+export const BlueTheme: FC<Props> = ({ children }) => (
+  <ThemeProvider theme={THEME}>
+    <GlobalStyles />
+    {children}
+  </ThemeProvider>
+)

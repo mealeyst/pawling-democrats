@@ -1,4 +1,3 @@
-
 const PAGE_GRAPHQL_FIELDS = `
 slug
 title
@@ -70,6 +69,6 @@ export async function getPage(slug, preview) {
     preview
   )
   return {
-    page: extractPage(entry)
+    page: extractPage(entry),
   }
 }

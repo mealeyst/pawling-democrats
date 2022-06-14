@@ -1,34 +1,37 @@
-import React, { FC, HTMLAttributes } from 'react';
-import styled from 'styled-components';
-import { useDelayUnmount } from '../../hooks/useDelayedUnmount';
+import React, { FC, HTMLAttributes } from 'react'
+import styled from 'styled-components'
+import { useDelayUnmount } from '../../hooks/useDelayedUnmount'
 import {
-  translateStyles, TranslationProps,
-} from '../../theme/Animations/Translate';
-import { color } from '../../theme/color';
-import { shadow } from '../../theme/shadow';
-import { spacing } from '../../theme/spacing';
-import Portal from '../../Portal/Portal';
-import { NavigationLink } from '../NavigationLink';
-import { CloseButton } from './CloseButton';
+  translateStyles,
+  TranslationProps,
+} from '../../theme/Animations/Translate'
+import { color } from '../../theme/color'
+import { shadow } from '../../theme/shadow'
+import { spacing } from '../../theme/spacing'
+import Portal from '../../Portal/Portal'
+import { NavigationLink } from '../NavigationLink'
+import { CloseButton } from './CloseButton'
 
 interface Props {
   show: boolean
 }
 
-const MobileDrawerBase: FC<Props & TranslationProps & HTMLAttributes<HTMLMenuElement>> = ({ duration, show, ...props }) => {
-  const shouldRenderChild = useDelayUnmount(show, duration as number);
-  const menuProps = { ...props };
-  delete menuProps.translateInCoords;
-  delete menuProps.translateOutCoords;
+const MobileDrawerBase: FC<
+  Props & TranslationProps & HTMLAttributes<HTMLMenuElement>
+> = ({ duration, show, ...props }) => {
+  const shouldRenderChild = useDelayUnmount(show, duration as number)
+  const menuProps = { ...props }
+  delete menuProps.translateInCoords
+  delete menuProps.translateOutCoords
   if (shouldRenderChild) {
     return (
       <Portal id="mobile-drawer">
         <menu {...menuProps} />
       </Portal>
-    );
+    )
   }
-  return null;
-};
+  return null
+}
 
 export const MobileDrawer = styled(MobileDrawerBase)`
   background-color: ${color('white.200')};
@@ -45,4 +48,4 @@ export const MobileDrawer = styled(MobileDrawerBase)`
   ${CloseButton}, ${CloseButton}:visited, ${NavigationLink}, ${NavigationLink}:visited {
     color: ${color('primary.400')};
   }
-`;
+`

@@ -1,5 +1,5 @@
 import { IPage, IPageFields } from './generated/contentful';
-import { isObj } from '../src/util';
+import { isObj } from '../util';
 
 export const hasAllIPageFieldKeys = (raw: unknown): raw is IPageFields =>
   isObj(raw)

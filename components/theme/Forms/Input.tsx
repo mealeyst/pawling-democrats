@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { color } from '../color';
-import { spacing } from '../spacing';
+import styled from 'styled-components'
+import { color } from '../color'
+import { spacing } from '../spacing'
 
 type InputProps = {
   secondary?: boolean
@@ -20,4 +20,4 @@ export const Input = styled.input<InputProps>`
   &:focus {
     border: ${spacing(0.5)} solid ${color('white.50')};
   }
-`;
+`
