@@ -76,10 +76,13 @@ export async function getStaticProps({ params, preview = false }) {
     'fields.slug': params.slug === 'pawling-democrats' ? 'home' : params.slug,
     include: 10,
   })) as Entry<IPageFields>[]
-  const desktopMarginTop = !(
-    pageData[0].fields.body?.content[0]?.data.target.sys.contentType.sys.id ===
-    'hero'
-  )
+  const desktopMarginTop =
+    Object.keys(pageData[0].fields.body?.content[0].data).length !== 0
+      ? !(
+          pageData[0].fields.body?.content[0]?.data.target.sys.contentType.sys
+            .id === 'hero'
+        )
+      : true
 
   return {
     props: {

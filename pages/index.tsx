@@ -80,10 +80,13 @@ export async function getStaticProps({ preview = false }) {
     {}
   )) as Entry<IPageFields>
   console.log()
-  const desktopMarginTop = !(
-    pageData.fields.body?.content[0]?.data.target.sys.contentType.sys.id ===
-    'hero'
-  )
+  const desktopMarginTop =
+    Object.keys(pageData.fields.body?.content[0].data).length !== 0
+      ? !(
+          pageData.fields.body?.content[0]?.data.target.sys.contentType.sys
+            .id === 'hero'
+        )
+      : true
   return {
     props: {
       preview,
