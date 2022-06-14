@@ -1,6 +1,5 @@
 require('dotenv').config();
 
-console.log(process.env);
 const contentfulManagement = require('contentful-management');
 
 // console.log('accessToken', process.env.CONTENTFUL_ACCESS_TOKEN);
