@@ -45,9 +45,9 @@ export const Footer = styled(({ className }) => (
   color: ${color('white.50')};
   width: 100vw;
   box-sizing: border-box;
-  min-height: ${spacing(30)};
   margin-top: ${spacing(10)};
   padding: ${spacing(10, 4)};
+  grid-area: footer;
   .footer-content {
     max-width: 1440px;
     display: grid;

@@ -17,6 +17,7 @@ import styled, { css } from 'styled-components'
 import { spacing } from '../components/theme/spacing'
 import { query } from '../components/theme/mediaQueies'
 import { Navigation } from '../components/Navigation'
+import { Page as StyledPage } from '../components/Page/Page'
 import { Footer } from '../components/Footer'
 
 type PageProps = {
@@ -62,14 +63,14 @@ export default function Page({
   }
 
   return (
-    <>
+    <StyledPage>
       <Navigation navigation={navigation} />
       <Body desktopMarginTop={desktopMarginTop}>
         {page?.fields?.body &&
           documentToReactComponents(page?.fields?.body as Document)}
       </Body>
       <Footer />
-    </>
+    </StyledPage>
   )
 }
 
