@@ -96,8 +96,8 @@ export const Footer = styled(({ className }) => (
       .copyright-info {
         grid-column-start: 1;
         grid-column-end: 13;
-        grid-row-start: 3;
-        grid-row-end: 4;
+        grid-row-start: 4;
+        grid-row-end: 5;
       }
       .social-region {
         grid-column-start: 10;
