@@ -7,6 +7,7 @@ import { Image } from '../../Assets/Image'
 import { documentToReactComponents } from '../../Nodes'
 import { color } from '../../theme/color'
 import { spacing } from '../../theme/spacing'
+import { shadow } from '../../theme/shadow'
 import { H2Styles } from '../../theme/Typography'
 
 export type CardProps = {
@@ -31,13 +32,15 @@ export const Card = styled(
   }
 )`
   background-color: ${color('primary.100')};
-  padding: ${spacing(8)};
+  border-radius: ${spacing(1)};
+  padding: ${spacing(6)};
+  box-shadow: ${shadow('shadow')};
   color: ${color('white.50')};
-  border-radius: ${spacing(4)};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-bottom: ${spacing(12)};
   .card-title {
     margin: ${spacing(8, 0, 2)};
     ${H2Styles}

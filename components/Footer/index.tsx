@@ -112,6 +112,7 @@ export const Footer = styled(({ className }) => (
     .social-region {
       display: flex;
       align-items: end;
+      padding-top: ${spacing(8)};
       a {
         margin-left: ${spacing(4)};
       }
