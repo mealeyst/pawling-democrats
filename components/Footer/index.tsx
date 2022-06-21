@@ -12,15 +12,6 @@ export const Footer = styled(({ className }) => (
   <footer className={className}>
     <div className="footer-content">
       <PawlingDemIconWithText className="logo" />
-      <form className="contact">
-        <Label>
-          Join Us:
-          <Input secondary type="email" />
-        </Label>
-        <footer className="mt-2">
-          <Button secondary>Submit</Button>
-        </footer>
-      </form>
       <div className="social-region">
         <span>Follow us:</span>
         <a href="https://www.facebook.com/pawlingdems/">
