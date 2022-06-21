@@ -36,6 +36,7 @@ export const Body = styled.section<BodyProps>`
   padding: ${spacing(0, 4)};
   margin-top: ${spacing(24)};
   max-width: 1440px;
+  min-width: 100%;
   ${query('md')} {
     ${({ desktopMarginTop = true }) =>
       desktopMarginTop
