@@ -104,7 +104,7 @@ export const Footer = styled(({ className }) => (
             </li>
             <li>
               <a href="https://ag.ny.gov/" target="_blank" rel="noreferrer">
-                Attourney General Letitia James
+                Attorney General Letitia James
               </a>
             </li>
           </ul>
