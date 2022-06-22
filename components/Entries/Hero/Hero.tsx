@@ -28,6 +28,7 @@ export const Hero = styled(({ className, fields }: HeroProps) => (
   left: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
+  margin-bottom: ${spacing(10)};
   max-width: 100vw;
   position: relative;
   right: 50%;
@@ -48,6 +49,9 @@ export const Hero = styled(({ className, fields }: HeroProps) => (
   padding-top: ${({ fields: { heroImage } }) =>
     heroImage && getAspectRatio(heroImage)}%;
   background-size: cover;
+  ${query('md')} {
+    margin-bottom: ${spacing(20)};
+  }
   .layout-region {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
