@@ -1,3 +1,4 @@
+import get from 'lodash/get'
 import React from 'react'
 import { useRouter } from 'next/router'
 import { Document } from '@contentful/rich-text-types'
@@ -36,7 +37,7 @@ export const Body = styled.section<BodyProps>`
   padding: ${spacing(0, 4)};
   margin-top: ${spacing(24)};
   max-width: 1440px;
-  min-width: 100%;
+  width: 100%;
   ${query('md')} {
     ${({ desktopMarginTop = true }) =>
       desktopMarginTop
@@ -49,7 +50,11 @@ export const Body = styled.section<BodyProps>`
   }
 `
 
-export default function Page({ page, navigation }: PageProps) {
+export default function Page({
+  desktopMarginTop,
+  page,
+  navigation,
+}: PageProps) {
   const router = useRouter()
   if (!router.isFallback && !page) {
     return (
@@ -62,7 +67,7 @@ export default function Page({ page, navigation }: PageProps) {
   return (
     <StyledPage>
       <Navigation navigation={navigation} />
-      <Body>
+      <Body desktopMarginTop={desktopMarginTop}>
         {page?.fields?.body &&
           documentToReactComponents(page?.fields?.body as Document)}
       </Body>
@@ -78,14 +83,10 @@ export async function getStaticProps({ params, preview = false }) {
     'fields.slug': params.slug === 'pawling-democrats' ? 'home' : params.slug,
     include: 10,
   })) as Entry<IPageFields>[]
+  const firstElement = pageData[0].fields.body?.content[0]
   const desktopMarginTop =
-    Object.keys(pageData[0].fields.body?.content[0].data).length !== 0
-      ? !(
-          pageData[0].fields.body?.content[0]?.data.target.sys.contentType.sys
-            .id === 'hero'
-        )
-      : true
-
+    firstElement?.data.target?.sys.contentType.sys.id !== 'hero'
+  console.log(desktopMarginTop)
   return {
     props: {
       preview,
