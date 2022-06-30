@@ -96,4 +96,10 @@ export const Hero = styled(({ className, fields }: HeroProps) => (
       color: ${color('primary.400')};
     }
   }
+  &:not(:first-of-type) {
+    margin-top: ${spacing(10)};
+    ${query('md')} {
+      margin-top: ${spacing(20)};
+    }
+  }
 `

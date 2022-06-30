@@ -6,6 +6,7 @@ import {
   MARKS,
   Inline,
   Block,
+  INLINES,
 } from '@contentful/rich-text-types'
 import {
   documentToReactComponents as defaultDocumentToReactComponents,
@@ -22,6 +23,7 @@ import { Image } from '../Assets/Image'
 import { Hero } from '../Entries/Hero/Hero'
 import { Card } from '../Entries/Card/Card'
 import { Deck } from '../Entries/Deck/Deck'
+import { Link } from '../theme/Link'
 
 const EMBEDDABLE_ENTRY = {
   CARD: 'card',
@@ -84,6 +86,9 @@ const options: Options = {
     ),
     [BLOCKS.EMBEDDED_ASSET]: (node) => renderEmbededAsset(node),
     [BLOCKS.EMBEDDED_ENTRY]: (node) => renderEmbededEntry(node),
+    [INLINES.HYPERLINK]: (node, children) => (
+      <Link href={node.data.uri}>{children}</Link>
+    ),
   },
 }
 

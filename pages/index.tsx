@@ -19,35 +19,13 @@ import { query } from '../components/theme/mediaQueies'
 import { Navigation } from '../components/Navigation'
 import { Page as StyledPage } from '../components/Page/Page'
 import { Footer } from '../components/Footer'
+import { Body } from '../components/theme/Body'
 
 type PageProps = {
   desktopMarginTop?: boolean
   page: IPage
   navigation: INavigationMenu
 }
-
-type BodyProps = {
-  desktopMarginTop?: boolean
-}
-
-export const Body = styled.section<BodyProps>`
-  margin-left: auto;
-  margin-right: auto;
-  padding: ${spacing(0, 4)};
-  margin-top: ${spacing(24)};
-  max-width: 1440px;
-  min-width: 100%;
-  ${query('md')} {
-    ${({ desktopMarginTop = true }) =>
-      desktopMarginTop
-        ? css`
-            margin-top: ${spacing(35)};
-          `
-        : css`
-            margin-top: 0;
-          `}
-  }
-`
 
 export default function Page({
   desktopMarginTop,
@@ -81,7 +59,7 @@ export async function getStaticProps({ preview = false }) {
     '2Ar9gUgcFgu8mUXQ8TXCqI',
     {}
   )) as Entry<IPageFields>
-  const firstElement = pageData[0].fields.body?.content[0]
+  const firstElement = pageData.fields.body?.content[0]
   const desktopMarginTop =
     firstElement?.data.target?.sys.contentType.sys.id !== 'hero'
   return {

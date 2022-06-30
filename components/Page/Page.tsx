@@ -2,7 +2,8 @@ import styled from 'styled-components'
 
 export const Page = styled.main`
   display: grid;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
 
   /* grid container settings */
   display: grid;
