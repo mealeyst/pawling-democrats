@@ -21,8 +21,10 @@ export const NavigationLink = styled.a`
       transition: background-color, 0.25s ease-in-out;
     }
     &:hover {
+      cursor: pointer;
+      color: ${color('primary.100')};
       &::before {
-        background-color: ${color('white.200')};
+        background-color: ${color('white.400')};
       }
     }
   }

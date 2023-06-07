@@ -24,6 +24,7 @@
   "author": "Shawn Mealey",
   "license": "ISC",
   "dependencies": {
+    "@apollo/client": "^3.7.15",
     "@contentful/rich-text-react-renderer": "latest",
     "@contentful/rich-text-types": "latest",
     "@fortawesome/free-brands-svg-icons": "latest",
@@ -33,6 +34,7 @@
     "@types/lodash": "latest",
     "@types/react-dom": "latest",
     "contentful": "latest",
+    "graphql": "^16.6.0",
     "lodash": "latest",
     "next": "latest",
     "react": "latest",
@@ -46,7 +48,11 @@
     "@types/styled-components": "latest",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
+    "assert": "^1.5.0",
     "babel-plugin-styled-components": "latest",
+    "contentful-management": "^10.36.0",
+    "contentful-typescript-codegen": "^3.4.0",
+    "dotenv": "^8.6.0",
     "eslint": "latest",
     "eslint-config-prettier": "latest",
     "eslint-plugin-jest": "latest",
@@ -59,6 +65,7 @@
     "jest": "latest",
     "prettier": "latest",
     "storybook": "latest",
+    "ts-node": "^10.9.1",
     "typescript": "latest"
   }
 }

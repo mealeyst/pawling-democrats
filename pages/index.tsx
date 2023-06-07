@@ -54,9 +54,9 @@ export default function Page({
 }
 
 export async function getStaticProps({ preview = false }) {
-  const navigationData = await getEntry('1GjjrJGYkHlgrGltIHjrcU', {})
+  const navigationData = await getEntry('1BFeQr7fSo4UdKJ7DhDKy2', {})
   const pageData = (await getEntry(
-    '2Ar9gUgcFgu8mUXQ8TXCqI',
+    '7kfwHoRnpCGpzMXz8cEoFO',
     {}
   )) as Entry<IPageFields>
   const firstElement = pageData.fields.body?.content[0]

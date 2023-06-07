@@ -118,7 +118,7 @@ export const Footer = styled(({ className }) => (
       </div>
       <section className="copyright-info">
         <span>
-          This website maintained by the Pawling Democratic Committee ©2022
+          This website maintained by the Pawling Democratic Committee ©2023
         </span>
       </section>
     </div>

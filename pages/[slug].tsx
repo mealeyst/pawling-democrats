@@ -41,7 +41,6 @@ export default function Page({
       </>
     )
   }
-
   return (
     <StyledPage>
       <Navigation navigation={navigation} />
@@ -55,7 +54,7 @@ export default function Page({
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  const navigationData = await getEntry('1GjjrJGYkHlgrGltIHjrcU', {})
+  const navigationData = await getEntry('1BFeQr7fSo4UdKJ7DhDKy2', {})
   const pageData = (await getEntries({
     content_type: 'page',
     'fields.slug': params.slug === 'pawling-democrats' ? 'home' : params.slug,

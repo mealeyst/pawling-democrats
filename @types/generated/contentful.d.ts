@@ -8,13 +8,13 @@ export interface IBlogPostFields {
   title?: string | undefined
 
   /** Slug */
-  slug: string
+  slug?: string | undefined
 
   /** Body */
   body?: Document | undefined
 }
 
-/** This is content lives under Updates section of the site and is used for more short lived content. This content will not appear in the navigation of the site, but lives in the Updates section of the site. */
+/** Blog posts are added to an overall feed and can be added in a more ad-hoc basis. */
 
 export interface IBlogPost extends Entry<IBlogPostFields> {
   sys: {
@@ -35,16 +35,14 @@ export interface IBlogPost extends Entry<IBlogPostFields> {
 
 export interface ICardFields {
   /** Title */
-  title: string
+  title?: string | undefined
 
   /** Image */
   image?: Asset | undefined
 
   /** Body */
-  body: Document
+  body?: Document | undefined
 }
-
-/** The Card content type is a means of breaking up content into smaller sections. They require a title and body section and can optionally contain an image. */
 
 export interface ICard extends Entry<ICardFields> {
   sys: {
@@ -65,16 +63,16 @@ export interface ICard extends Entry<ICardFields> {
 
 export interface IDeckFields {
   /** Title */
-  title: string
+  title?: string | undefined
 
   /** Cards */
   cards?: ICard[] | undefined
 
-  /** Number of Columns */
-  columns: number
+  /** Columns */
+  columns?: number | undefined
 }
 
-/** The Deck content type simply contains cards and is used to determine the layout of the cards. */
+/** A deck contains one or more cards and controls how they are rendered. */
 
 export interface IDeck extends Entry<IDeckFields> {
   sys: {
@@ -94,8 +92,8 @@ export interface IDeck extends Entry<IDeckFields> {
 }
 
 export interface IHeroFields {
-  /** Name */
-  name?: string | undefined
+  /** Title */
+  title?: string | undefined
 
   /** Hero Image */
   heroImage?: Asset | undefined
@@ -103,8 +101,6 @@ export interface IHeroFields {
   /** Content Region */
   contentRegion?: Document | undefined
 }
-
-/** This content type designates a region of a webpage. It tends to have, but is not required to have a background image. */
 
 export interface IHero extends Entry<IHeroFields> {
   sys: {
@@ -124,14 +120,12 @@ export interface IHero extends Entry<IHeroFields> {
 }
 
 export interface INavigationMenuFields {
-  /** Name */
-  name?: string | undefined
+  /** Title */
+  title?: string | undefined
 
   /** Menu Items */
-  menuItems: Entry<{ [fieldId: string]: unknown }>[]
+  menuItems?: IPage[] | undefined
 }
-
-/** This content type simply references Page content types and is used to render Navigation Menus (e.g. the Site Navigation at the top of the site) */
 
 export interface INavigationMenu extends Entry<INavigationMenuFields> {
   sys: {
@@ -155,13 +149,11 @@ export interface IPageFields {
   title?: string | undefined
 
   /** Slug */
-  slug: string
+  slug?: string | undefined
 
   /** Body */
   body?: Document | undefined
 }
-
-/** This content serves as more static content, think of pages such as "About Us" "What We Stand For", "Members", etc. These pages will be loaded in to the top navigation of the site. */
 
 export interface IPage extends Entry<IPageFields> {
   sys: {
@@ -187,6 +179,8 @@ export type CONTENT_TYPE =
   | 'hero'
   | 'navigationMenu'
   | 'page'
+
+export type IEntry = IBlogPost | ICard | IDeck | IHero | INavigationMenu | IPage
 
 export type LOCALE_CODE = 'en-US'
 
