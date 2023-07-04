@@ -1,3 +1,5 @@
+import { IPageFields } from '../@types/generated/contentful'
+
 const PAGE_GRAPHQL_FIELDS = `
 slug
 title
@@ -16,6 +18,19 @@ body {
   }
 }
 `
+
+function extractNavigationLinks(fetchResponse) {
+  return fetchResponse?.data?.navigationMenuCollection?.items[0].menuItemsCollection.items.reduce(
+    (acc, { title, slug }) => {
+      return [
+        ...acc,
+        { children: title, href: `/${slug !== null ? slug : ''}` },
+      ]
+    },
+    []
+  )
+}
+
 async function fetchGraphQL(query, preview = false) {
   return fetch(
     `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`,
@@ -36,7 +51,8 @@ async function fetchGraphQL(query, preview = false) {
   })
 }
 
-function extractPage(fetchResponse) {
+function extractPage(fetchResponse): IPageFields {
+  console.log(fetchResponse?.data?.pageCollection?.items?.[0])
   return fetchResponse?.data?.pageCollection?.items?.[0]
 }
 
@@ -60,7 +76,9 @@ export async function getAllPagesWithSlug() {
 export async function getPage(slug, preview) {
   const entry = await fetchGraphQL(
     `query {
-      pageCollection(where: { slug: "${slug}" }, preview: false, limit: 1) {
+      pageCollection(where: { slug: "${slug}" },  preview: ${
+      preview ? 'true' : 'false'
+    }, limit: 1) {
         items {
           ${PAGE_GRAPHQL_FIELDS}
         }
@@ -71,4 +89,32 @@ export async function getPage(slug, preview) {
   return {
     page: extractPage(entry),
   }
+}
+
+export async function getSiteNavigation(preview) {
+  const entries = await fetchGraphQL(
+    `query {
+      navigationMenuCollection(where: {title: "Site Navigation"} preview: ${
+        preview ? 'true' : 'false'
+      }) {
+        items{
+          title
+          menuItemsCollection(limit: 100) {
+            items {
+              __typename
+              ... on Page {
+                title
+                slug
+              }
+              ... on BlogPost {
+                title
+                slug
+              }
+            }
+          }
+        }
+      }
+    }`
+  )
+  return extractNavigationLinks(entries)
 }

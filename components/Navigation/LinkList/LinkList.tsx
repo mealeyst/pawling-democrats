@@ -1,4 +1,4 @@
-import React, { FC, HTMLAttributes } from 'react'
+import React, { FC, HTMLAttributes, ReactNode } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
 import { INavigationMenu } from '../../../@types/generated/contentful'
@@ -9,7 +9,10 @@ import { NavigationLink } from '../NavigationLink'
 import { LinkListItem } from './LinkListItem'
 
 interface Props {
-  data: INavigationMenu | null
+  data: {
+    href: string
+    children: ReactNode
+  }[]
   setDrawer?: (drawerState: boolean) => void | undefined
 }
 
@@ -20,28 +23,25 @@ export const LinkListView: FC<HTMLAttributes<HTMLUListElement> & Props> = ({
 }) => (
   <ul className={className}>
     {data &&
-      data.fields.menuItems.map((menuItem) => {
-        if (isIPage(menuItem)) {
-          return (
-            <LinkListItem key={menuItem.sys.id}>
-              {menuItem.fields.slug !== 'donate' && (
-                <Link href={`/${menuItem.fields.slug}`}>
-                  <NavigationLink
-                    onClick={() => setDrawer !== undefined && setDrawer(false)}
-                  >
-                    {menuItem.fields.title}
-                  </NavigationLink>
-                </Link>
-              )}
-              {menuItem.fields.slug === 'donate' && (
-                <Link href={`/${menuItem.fields.slug}`}>
-                  <Button large>{menuItem.fields.title}</Button>
-                </Link>
-              )}
-            </LinkListItem>
-          )
-        }
-        return null
+      data.map(({ children, href }, index) => {
+        return (
+          <LinkListItem key={index}>
+            {!href.includes('donate') && (
+              <Link href={href}>
+                <NavigationLink
+                  onClick={() => setDrawer !== undefined && setDrawer(false)}
+                >
+                  {children}
+                </NavigationLink>
+              </Link>
+            )}
+            {href.includes('donate') && (
+              <Link href={href}>
+                <Button large>{children}</Button>
+              </Link>
+            )}
+          </LinkListItem>
+        )
       })}
   </ul>
 )
