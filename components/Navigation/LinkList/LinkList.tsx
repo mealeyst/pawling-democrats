@@ -20,31 +20,33 @@ export const LinkListView: FC<HTMLAttributes<HTMLUListElement> & Props> = ({
   className,
   data,
   setDrawer,
-}) => (
-  <ul className={className}>
-    {data &&
-      data.map(({ children, href }, index) => {
-        return (
-          <LinkListItem key={index}>
-            {!href.includes('donate') && (
-              <Link href={href}>
-                <NavigationLink
-                  onClick={() => setDrawer !== undefined && setDrawer(false)}
-                >
-                  {children}
-                </NavigationLink>
-              </Link>
-            )}
-            {href.includes('donate') && (
-              <Link href={href}>
-                <Button large>{children}</Button>
-              </Link>
-            )}
-          </LinkListItem>
-        )
-      })}
-  </ul>
-)
+}) => {
+  return (
+    <ul className={className}>
+      {data &&
+        data.map(({ children, href }, index) => {
+          return (
+            <LinkListItem key={index}>
+              {!href.includes('donate') && (
+                <Link href={href}>
+                  <NavigationLink
+                    onClick={() => setDrawer !== undefined && setDrawer(false)}
+                  >
+                    {children}
+                  </NavigationLink>
+                </Link>
+              )}
+              {href.includes('donate') && (
+                <Link href={href}>
+                  <Button large>{children}</Button>
+                </Link>
+              )}
+            </LinkListItem>
+          )
+        })}
+    </ul>
+  )
+}
 
 export const LinkList = styled(LinkListView)`
   list-style: none;

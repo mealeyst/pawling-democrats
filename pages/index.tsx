@@ -20,6 +20,7 @@ import { Navigation } from '../components/Navigation'
 import { Page as StyledPage } from '../components/Page/Page'
 import { Footer } from '../components/Footer'
 import { Body } from '../components/theme/Body'
+import { getSiteNavigation } from '../lib/api'
 
 type PageProps = {
   desktopMarginTop?: boolean
@@ -54,7 +55,7 @@ export default function Page({
 }
 
 export async function getStaticProps({ preview = false }) {
-  const navigationData = await getEntry('1BFeQr7fSo4UdKJ7DhDKy2', {})
+  const navigation = (await getSiteNavigation(preview)) ?? []
   const pageData = (await getEntry(
     '7kfwHoRnpCGpzMXz8cEoFO',
     {}
@@ -65,7 +66,7 @@ export async function getStaticProps({ preview = false }) {
   return {
     props: {
       preview,
-      navigation: navigationData,
+      navigation,
       page: pageData ?? null,
       desktopMarginTop,
     },

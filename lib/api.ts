@@ -20,7 +20,7 @@ body {
 `
 
 function extractNavigationLinks(fetchResponse) {
-  return fetchResponse?.data?.navigationMenuCollection?.items[0].menuItemsCollection.items.reduce(
+  const links = fetchResponse?.data?.navigationMenuCollection?.items[0].menuItemsCollection.items.reduce(
     (acc, { title, slug }) => {
       return [
         ...acc,
@@ -29,6 +29,8 @@ function extractNavigationLinks(fetchResponse) {
     },
     []
   )
+  console.log(links)
+  return links
 }
 
 async function fetchGraphQL(query, preview = false) {
