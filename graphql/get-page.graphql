@@ -1,0 +1,22 @@
+query GetPage($slug: String) {
+  pageCollection(where: { slug: $slug }, limit: 1) {
+    items {
+      slug
+      title
+      body {
+        json
+        links {
+          assets {
+            block {
+              sys {
+                id
+              }
+              url
+              description
+            }
+          }
+        }
+      }
+    }
+  }
+}

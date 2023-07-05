@@ -8,12 +8,14 @@
     "build-storybook": "build-storybook",
     "build": "next build",
     "codegen": "contentful-typescript-codegen --output @types/generated/contentful.d.ts",
+    "compile": "graphql-codegen",
     "deploy": "gh-pages -d dist",
     "dev": "next",
     "lint": "eslint ./ --fix",
     "predeploy": "npm run build",
     "start": "next start",
-    "storybook": "start-storybook -p 6006"
+    "storybook": "start-storybook -p 6006",
+    "watch": "graphql-codegen -w"
   },
   "keywords": [
     "Typescript",
@@ -35,6 +37,7 @@
     "@types/react-dom": "latest",
     "contentful": "latest",
     "graphql": "^16.7.1",
+    "graphql-tag": "^2.12.6",
     "lodash": "latest",
     "next": "latest",
     "react": "latest",
@@ -43,6 +46,11 @@
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^4.0.1",
+    "@graphql-codegen/client-preset": "^4.0.1",
+    "@graphql-codegen/typescript": "^4.0.1",
+    "@graphql-codegen/typescript-graphql-request": "^5.0.0",
+    "@graphql-codegen/typescript-operations": "^4.0.1",
+    "@graphql-codegen/typescript-react-apollo": "^3.3.7",
     "@storybook/react": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
