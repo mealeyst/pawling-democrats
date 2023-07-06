@@ -20,6 +20,7 @@ import {
   extractPageEntries,
 } from '../lib/api'
 import { LinkList } from '../@types/Link'
+import Script from 'next/script'
 type PageProps = {
   desktopMarginTop?: boolean
   page: PageData
@@ -41,6 +42,19 @@ export default function Page({
   }
   return (
     <StyledPage>
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-CETBKZ91KC"
+      />
+      <Script>
+        {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-CETBKZ91KC');
+          `}
+      </Script>
       <Navigation navigation={navigation} />
       <Body desktopMarginTop={desktopMarginTop}>
         {page?.body &&
