@@ -1,5 +1,5 @@
-query GetPage($slug: String) {
-  pageCollection(where: { slug: $slug }, limit: 1) {
+query GetPage($slug: String, $preview: Boolean!) {
+  pageCollection(where: { slug: $slug }, preview: $preview, limit: 1) {
     items {
       slug
       title
@@ -10,9 +10,49 @@ query GetPage($slug: String) {
             block {
               sys {
                 id
+                __typename
               }
               url
               description
+            }
+          }
+          entries {
+            block {
+              sys {
+                id
+                __typename
+              }
+              __typename
+              ... on Hero {
+                heroImage {
+                  url
+                  description
+                  width
+                  height
+                }
+                contentRegion {
+                  json
+                }
+              }
+              ... on Deck {
+                title
+                columns
+                cardsCollection {
+                  items {
+                    sys {
+                      id
+                    }
+                    title
+                    image {
+                      url
+                      description
+                    }
+                    body {
+                      json
+                    }
+                  }
+                }
+              }
             }
           }
         }

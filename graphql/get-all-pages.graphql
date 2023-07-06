@@ -1,0 +1,8 @@
+query {
+  pageCollection(where: { slug_exists: true }) {
+    items {
+      slug
+      title
+    }
+  }
+}

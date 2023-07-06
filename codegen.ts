@@ -1,5 +1,5 @@
-require('dotenv').config();
-import { CodegenConfig } from '@graphql-codegen/cli';
+import 'dotenv/config'
+import { CodegenConfig } from '@graphql-codegen/cli'
 
 const config: CodegenConfig = {
   schema: [
@@ -16,16 +16,17 @@ const config: CodegenConfig = {
       },
     },
   ],
-  documents: ['graphql/**/*.graphql', 'graphql/*.graphql'],
+  documents: ['graphql/**/*.graphql'],
   generates: {
-    './__generated__/': {
-      preset: 'client',
-      plugins: ['typescript'],
+    './@types/generated.ts': { plugins: ['typescript'] },
+    './@types/': {
+      preset: 'near-operation-file',
       presetConfig: {
-        gqlTagName: 'gql',
-      }
-    }
-  }
-};
+        baseTypesPath: 'generated.ts',
+      },
+      plugins: ['typescript-operations', 'typed-document-node'],
+    },
+  },
+}
 
-export default config;
+export default config

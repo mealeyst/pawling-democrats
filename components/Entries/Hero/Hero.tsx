@@ -2,25 +2,27 @@ import React from 'react'
 import styled from 'styled-components'
 import { Document } from '@contentful/rich-text-types'
 
-import { IHeroFields } from '../../../@types/generated/contentful'
 import { documentToReactComponents } from '../../Nodes'
 import { fetchAssetURL, getAspectRatio } from '../../Assets/utils'
 import { H1, TitleStyles } from '../../theme/Typography'
 import { color } from '../../theme/color'
 import { spacing } from '../../theme/spacing'
 import { query } from '../../theme/mediaQueies'
+import { Hero as HeroData } from '../../../@types/generated'
 
 type HeroProps = {
   className?: string
-  fields: IHeroFields
+  entry: HeroData
 }
 
-export const Hero = styled(({ className, fields }: HeroProps) => (
+export const Hero = styled(({ className, entry }: HeroProps) => (
   <div className={className}>
     <div className="layout-region">
       <section className="hero-content">
-        {fields.contentRegion &&
-          documentToReactComponents(fields.contentRegion as Document)}
+        {entry.contentRegion &&
+          documentToReactComponents(
+            (entry.contentRegion.json as unknown) as Document
+          )}
       </section>
     </div>
   </div>
@@ -45,8 +47,8 @@ export const Hero = styled(({ className, fields }: HeroProps) => (
       rgba(255, 255, 255, 0.75) 40%,
       rgba(0, 0, 0, 0) 100%
     ),
-    url(${({ fields: { heroImage } }) => heroImage && fetchAssetURL(heroImage)});
-  padding-top: ${({ fields: { heroImage } }) =>
+    url(${({ entry: { heroImage } }) => heroImage && heroImage.url});
+  padding-top: ${({ entry: { heroImage } }) =>
     heroImage && getAspectRatio(heroImage)}%;
   background-size: cover;
   ${query('md')} {

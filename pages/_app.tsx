@@ -1,9 +1,10 @@
 import React from 'react'
-import type { AppProps } from 'next/app'
+import App, { AppContext, AppProps } from 'next/app'
 import Head from 'next/head'
 import { BlueTheme } from '../components/theme/Theme'
 
 function MyApp({ Component, pageProps }: AppProps) {
+  console.log('pageProps', pageProps)
   return (
     <>
       <Head>
@@ -18,5 +19,14 @@ function MyApp({ Component, pageProps }: AppProps) {
     </>
   )
 }
+MyApp.getInitialProps = async (context: AppContext) => {
+  const ctx = await App.getInitialProps(context)
 
+  const initialProps = {
+    ...ctx,
+    preview: 'CONTENTFUL_PREVIEW_ACCESS_TOKEN' in process.env,
+  }
+  console.log('INITIAL PROPS', initialProps)
+  return initialProps
+}
 export default MyApp

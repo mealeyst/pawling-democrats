@@ -1,28 +1,29 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import { Document } from '@contentful/rich-text-types'
-import { Entry } from 'contentful'
 
-import {
-  INavigationMenu,
-  IPage,
-  IPageFields,
-} from '../@types/generated/contentful'
 import { documentToReactComponents } from '../components/Nodes'
 import ErrorPage from 'next/error'
 
-import { getAllPagesWithSlug, getSiteNavigation } from '../lib/api'
-import { getEntries, getEntry } from '../lib/Contentful'
 import { Navigation } from '../components/Navigation'
 import { Page as StyledPage } from '../components/Page/Page'
 import { Footer } from '../components/Footer'
 import { Body } from '../components/theme/Body'
-import { gql } from '../__generated__/gql'
-import getPage from '../graphql/get-page.graphql'
+import GET_PAGE from '../graphql/get-page.graphql'
+import GET_ALL_PAGES from '../graphql/get-all-pages.graphql'
+import GET_NAVIGATION from '../graphql/get-site-navigation.graphql'
+import { Page as PageData, NavigationMenu } from '../@types/generated'
+import { initializeApollo } from '../lib/apolloClient'
+import {
+  extractNavigationLinks,
+  extractPage,
+  extractPageEntries,
+  getAllPages,
+} from '../lib/api'
 type PageProps = {
   desktopMarginTop?: boolean
-  page: IPage
-  navigation: INavigationMenu
+  page: PageData
+  navigation: NavigationMenu
 }
 
 export default function Page({
@@ -42,33 +43,52 @@ export default function Page({
     <StyledPage>
       <Navigation navigation={navigation} />
       <Body desktopMarginTop={desktopMarginTop}>
-        {page?.fields?.body &&
-          documentToReactComponents(page?.fields?.body as Document)}
+        {page?.body &&
+          documentToReactComponents(
+            (page?.body.json as unknown) as Document,
+            page.body.links
+          )}
       </Body>
       <Footer />
     </StyledPage>
   )
 }
 
-export async function getStaticProps({ params, preview = true }) {
-  const navigation = (await getSiteNavigation(preview)) ?? []
-  const result = gql(getPage)
-  console.log(result)
-  const firstElement = page.body?.content[0]
-  const desktopMarginTop =
-    firstElement?.data.target?.sys.contentType.sys.id !== 'hero'
+export async function getStaticProps({ params, preview = false }) {
+  const client = initializeApollo()
+  const page = extractPage(
+    await client.query({
+      query: GET_PAGE,
+      variables: {
+        slug: params.slug,
+        preview,
+      },
+    })
+  )
+  const navigation = extractNavigationLinks(
+    await client.query({
+      query: GET_NAVIGATION,
+      variables: {
+        preview,
+      },
+    })
+  )
+
   return {
     props: {
-      preview,
-      navigation,
       page,
-      desktopMarginTop,
+      navigation,
     },
   }
 }
 
 export async function getStaticPaths() {
-  const allPages = await getAllPagesWithSlug()
+  const client = initializeApollo()
+  const allPages = extractPageEntries(
+    await client.query({
+      query: GET_ALL_PAGES,
+    })
+  )
   return {
     paths: allPages?.map(({ slug }) => `/${slug}`) ?? [],
     fallback: true,

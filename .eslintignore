@@ -2,3 +2,5 @@ node_modules
 dist
 webpack.config.babel.js
 ./**/*.stories.tsx
+graphql
+@types

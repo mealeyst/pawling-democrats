@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Document } from '@contentful/rich-text-types'
 
-import { ICardFields } from '../../../@types/generated/contentful'
+import { Card as CardEntry } from '../../../@types/generated'
 import { Image } from '../../Assets/Image'
 import { documentToReactComponents } from '../../Nodes'
 import { color } from '../../theme/color'
@@ -12,21 +12,18 @@ import { H2Styles } from '../../theme/Typography'
 
 export type CardProps = {
   className?: string
-  fields: ICardFields
+  entry: CardEntry
 }
 
 export const Card = styled(
-  ({ className, fields: { image, title, body } }: CardProps) => {
+  ({ className, entry: { image, title, body } }: CardProps) => {
     return (
       <div className={className}>
-        {image && (
-          <Image
-            {...image}
-            api={{ width: 300, height: 300, focus: 'face', fit: 'fill' }}
-          />
+        {image && image.url && image.description && (
+          <img src={image.url} alt={image.description} />
         )}
         <span className="card-title">{title}</span>
-        {body && documentToReactComponents(body as Document)}
+        {body && documentToReactComponents((body.json as unknown) as Document)}
       </div>
     )
   }
@@ -45,9 +42,10 @@ export const Card = styled(
     margin: ${spacing(8, 0, 2)};
     ${H2Styles}
   }
-  ${Image} {
+  img {
     border-radius: 50%;
     width: 100%;
-    display: flex;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
   }
 `

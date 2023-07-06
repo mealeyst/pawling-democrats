@@ -1,5 +1,6 @@
-import { Asset } from 'contentful'
-import styled, { StyledComponent, DefaultTheme } from 'styled-components'
+import React from 'react'
+import { Asset } from '../../@types/generated'
+import styled from 'styled-components'
 
 type ImageProps = Asset & {
   api?: {
@@ -23,11 +24,7 @@ type ImageProps = Asset & {
   }
 }
 
-export const Image: StyledComponent<
-  'img',
-  DefaultTheme,
-  ImageProps
-> = styled.img.attrs<ImageProps>(({ fields, ...props }) => {
+export const Image = styled(({ description, url, ...props }: ImageProps) => {
   // const argsObject = { focus: f, fit, h, w, r, q }
   const args: string[] = []
   if (props.api) {
@@ -50,11 +47,12 @@ export const Image: StyledComponent<
       args.push(`q=${props.api.quality}`)
     }
   }
-  console.log()
-  return {
-    alt: fields.description,
-    src: args ? `${fields.file.url}?${args.join('&')}` : fields.file.url,
+  if (description && url) {
+    return (
+      <img alt={description} src={args ? `${url}?${args.join('&')}` : url} />
+    )
   }
+  return null
 })`
   max-width: 100%;
 `

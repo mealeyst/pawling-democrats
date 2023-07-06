@@ -1,10 +1,9 @@
-import { Asset } from 'contentful'
+import { Asset } from '../../@types/generated'
 
-export const fetchAssetURL = (asset: Asset) => asset.fields.file.url
+export const fetchAssetURL = (asset: Asset) => asset.url
 
-export const getAspectRatio = (asset: Asset) => {
-  if (asset.fields.file.details.image) {
-    const { width, height } = asset.fields.file.details.image
+export const getAspectRatio = ({ width, height }: Asset) => {
+  if (width && height) {
     if (width > height) {
       return (height / width) * 100
     }
