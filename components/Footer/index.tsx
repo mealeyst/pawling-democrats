@@ -5,7 +5,6 @@ import { faFacebookF } from '@fortawesome/free-brands-svg-icons'
 import { color } from '../theme/color'
 import { query } from '../theme/mediaQueies'
 import { spacing } from '../theme/spacing'
-import { Button, Input, Label } from '../theme/Forms'
 import { PawlingDemIconWithText } from '../Icons/PawlingDemIconWithText'
 
 export const Footer = styled(({ className }) => (

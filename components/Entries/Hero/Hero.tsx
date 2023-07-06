@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Document } from '@contentful/rich-text-types'
 
 import { documentToReactComponents } from '../../Nodes'
-import { fetchAssetURL, getAspectRatio } from '../../Assets/utils'
+import { getAspectRatio } from '../../Assets/utils'
 import { H1, TitleStyles } from '../../theme/Typography'
 import { color } from '../../theme/color'
 import { spacing } from '../../theme/spacing'

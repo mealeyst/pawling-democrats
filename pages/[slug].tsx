@@ -12,18 +12,18 @@ import { Body } from '../components/theme/Body'
 import GET_PAGE from '../graphql/get-page.graphql'
 import GET_ALL_PAGES from '../graphql/get-all-pages.graphql'
 import GET_NAVIGATION from '../graphql/get-site-navigation.graphql'
-import { Page as PageData, NavigationMenu } from '../@types/generated'
+import { Page as PageData } from '../@types/generated'
 import { initializeApollo } from '../lib/apolloClient'
 import {
   extractNavigationLinks,
   extractPage,
   extractPageEntries,
-  getAllPages,
 } from '../lib/api'
+import { LinkList } from '../@types/Link'
 type PageProps = {
   desktopMarginTop?: boolean
   page: PageData
-  navigation: NavigationMenu
+  navigation: LinkList
 }
 
 export default function Page({

@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { color } from '../../theme/color'
-import { spacing } from '../../theme/spacing'
+import { spacing } from '../theme/spacing'
 
 export const PawlingDemIcon = styled(({ className }) => (
   <svg

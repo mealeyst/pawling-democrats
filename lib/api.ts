@@ -1,3 +1,4 @@
+import { LinkList } from '../@types/Link'
 import { ApolloQueryResult } from '@apollo/client'
 
 async function fetchGraphQL(query, preview = false) {
@@ -18,7 +19,7 @@ async function fetchGraphQL(query, preview = false) {
   ).then((response) => response.json())
 }
 
-export function extractNavigationLinks(fetchResponse: any) {
+export function extractNavigationLinks(fetchResponse: any): LinkList {
   return fetchResponse?.data?.navigationMenuCollection?.items[0].menuItemsCollection.items.reduce(
     (acc, { title, slug }) => {
       return [

@@ -1,8 +1,6 @@
 import React, { FC, HTMLAttributes, ReactNode } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
-import { INavigationMenu } from '../../../@types/generated/contentful'
-import { isIPage } from '../../../@types/IPage'
 import { query } from '../../theme/mediaQueies'
 import { Button } from '../../theme/Forms'
 import { NavigationLink } from '../NavigationLink'
