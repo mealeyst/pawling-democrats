@@ -2,6 +2,7 @@ import React from 'react'
 import App, { AppContext, AppProps } from 'next/app'
 import Head from 'next/head'
 import { BlueTheme } from '../components/theme/Theme'
+import Script from 'next/script'
 
 function MyApp({ Component, pageProps }: AppProps) {
   console.log('pageProps', pageProps)
@@ -12,6 +13,19 @@ function MyApp({ Component, pageProps }: AppProps) {
           name="viewport"
           content="width=device-width, initial-scale=1.0"
         ></meta>
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-CETBKZ91KC"
+        />
+        <Script>
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-CETBKZ91KC');
+          `}
+        </Script>
       </Head>
       <BlueTheme>
         <Component {...pageProps} />
