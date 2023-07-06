@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { Document } from '@contentful/rich-text-types'
 
 import { Card as CardEntry } from '../../../@types/generated'
-import { Image } from '../../Assets/Image'
 import { documentToReactComponents } from '../../Nodes'
 import { color } from '../../theme/color'
 import { spacing } from '../../theme/spacing'
