@@ -70,6 +70,8 @@ __webpack_require__.d(__webpack_exports__, {
 var jsx_runtime_ = __webpack_require__(997);
 // EXTERNAL MODULE: external "react"
 var external_react_ = __webpack_require__(6689);
+// EXTERNAL MODULE: ./node_modules/next/app.js
+var app = __webpack_require__(7544);
 ;// CONCATENATED MODULE: external "next/head"
 const head_namespaceObject = require("next/head");
 var head_default = /*#__PURE__*/__webpack_require__.n(head_namespaceObject);
@@ -247,7 +249,9 @@ const BlueTheme = ({ children  })=>/*#__PURE__*/ (0,jsx_runtime_.jsxs)(external_
 
 
 
+
 function MyApp({ Component , pageProps  }) {
+    console.log("pageProps", pageProps);
     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)(jsx_runtime_.Fragment, {
         children: [
             /*#__PURE__*/ jsx_runtime_.jsx((head_default()), {
@@ -264,6 +268,15 @@ function MyApp({ Component , pageProps  }) {
         ]
     });
 }
+MyApp.getInitialProps = async (context)=>{
+    const ctx = await app["default"].getInitialProps(context);
+    const initialProps = {
+        ...ctx,
+        preview: "CONTENTFUL_PREVIEW_ACCESS_TOKEN" in process.env
+    };
+    console.log("INITIAL PROPS", initialProps);
+    return initialProps;
+};
 /* harmony default export */ const _app = (MyApp);
 
 
@@ -273,6 +286,13 @@ function MyApp({ Component , pageProps  }) {
 /***/ ((module) => {
 
 module.exports = require("lodash");
+
+/***/ }),
+
+/***/ 9232:
+/***/ ((module) => {
+
+module.exports = require("next/dist/shared/lib/utils.js");
 
 /***/ }),
 
@@ -304,7 +324,7 @@ module.exports = require("styled-components");
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = (__webpack_exec__(2594));
+var __webpack_exports__ = __webpack_require__.X(0, [544], () => (__webpack_exec__(2594)));
 module.exports = __webpack_exports__;
 
 })();

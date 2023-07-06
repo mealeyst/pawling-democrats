@@ -1,29 +1,31 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { IDeckFields } from '../../../@types/generated/contentful'
+import { Deck as DeckEntry } from '../../../@types/generated'
 import { spacing } from '../../theme/spacing'
 import { Card } from '../Card/Card'
 import { query } from '../../theme/mediaQueies'
 
 export type CardProps = {
   className?: string
-  fields: IDeckFields
+  entry: DeckEntry
 }
 
-export const Deck = styled(({ className, fields: { cards } }: CardProps) => {
-  return (
-    <div className={className}>
-      {cards?.map((card) => {
-        return <Card {...card} key={card.sys.id} />
-      })}
-    </div>
-  )
-})`
+export const Deck = styled(
+  ({ className, entry: { cardsCollection } }: CardProps) => {
+    return (
+      <div className={className}>
+        {cardsCollection?.items.map((card) => {
+          return <Card entry={card} key={card?.sys.id} />
+        })}
+      </div>
+    )
+  }
+)`
   display: grid;
   ${query('md')} {
     grid-template-columns: repeat(
-      ${(props: CardProps): number => props.fields.columns},
+      ${(props: CardProps): number => props.entry.columns || 1},
       1fr
     );
     gap: ${spacing(4)};

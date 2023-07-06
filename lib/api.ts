@@ -1,24 +1,9 @@
-const PAGE_GRAPHQL_FIELDS = `
-slug
-title
-body {
-  json
-  links {
-    assets {
-      block {
-        sys {
-          id
-        }
-        url
-        description
-      }
-    }
-  }
-}
-`
+import { LinkList } from '../@types/Link'
+import { ApolloQueryResult } from '@apollo/client'
+
 async function fetchGraphQL(query, preview = false) {
   return fetch(
-    `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`,
+    `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`,
     {
       method: 'POST',
       headers: {
@@ -31,44 +16,39 @@ async function fetchGraphQL(query, preview = false) {
       },
       body: JSON.stringify({ query }),
     }
-  ).then((response) => {
-    return response.json()
-  })
+  ).then((response) => response.json())
 }
 
-function extractPage(fetchResponse) {
-  return fetchResponse?.data?.pageCollection?.items?.[0]
+export function extractNavigationLinks(fetchResponse: any): LinkList {
+  return fetchResponse?.data?.navigationMenuCollection?.items[0].menuItemsCollection.items.reduce(
+    (acc, { title, slug }) => {
+      return [
+        ...acc,
+        { children: title, href: `/${slug !== null ? slug : ''}` },
+      ]
+    },
+    []
+  )
 }
 
-function extractPageEntries(fetchResponse) {
+export function extractPage(response: ApolloQueryResult<any>) {
+  return response?.data?.pageCollection?.items?.[0]
+}
+
+export function extractPageEntries(fetchResponse: any) {
   return fetchResponse?.data?.pageCollection?.items
 }
 
-export async function getAllPagesWithSlug() {
+export async function getAllPages() {
   const entries = await fetchGraphQL(
     `query {
-      pageCollection(where: { slug_exists: true }) {
+      pageCollection(where: { slug_exists: true } limit: 100){
         items {
-          ${PAGE_GRAPHQL_FIELDS}
+          slug
+          title
         }
       }
     }`
   )
   return extractPageEntries(entries)
-}
-
-export async function getPage(slug, preview) {
-  const entry = await fetchGraphQL(
-    `query {
-      pageCollection(where: { slug: "${slug}" }, preview: false, limit: 1) {
-        items {
-          ${PAGE_GRAPHQL_FIELDS}
-        }
-      }
-    }`,
-    preview
-  )
-  return {
-    page: extractPage(entry),
-  }
 }

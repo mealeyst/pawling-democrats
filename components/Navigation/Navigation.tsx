@@ -4,12 +4,12 @@ import { MobileMenu } from './MobileMenu'
 import { DesktopMenu } from './DesktopMenu'
 import { LinkList } from './LinkList/LinkList'
 import { PawlingDemsIcon } from '../Icons/PawlingDemsIcon'
-import { INavigationMenu } from '../../@types/generated/contentful'
 import styled from 'styled-components'
+import { LinkList as ILinkList } from '../../@types/Link'
 
 interface NavigationProps {
   className?: string
-  navigation: INavigationMenu
+  navigation: ILinkList
 }
 
 export const Navigation = styled(

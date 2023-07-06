@@ -1,15 +1,16 @@
-import React, { FC, HTMLAttributes } from 'react'
+import React, { FC, HTMLAttributes, ReactNode } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
-import { INavigationMenu } from '../../../@types/generated/contentful'
-import { isIPage } from '../../../@types/IPage'
 import { query } from '../../theme/mediaQueies'
 import { Button } from '../../theme/Forms'
 import { NavigationLink } from '../NavigationLink'
 import { LinkListItem } from './LinkListItem'
 
 interface Props {
-  data: INavigationMenu | null
+  data: {
+    href: string
+    children: ReactNode
+  }[]
   setDrawer?: (drawerState: boolean) => void | undefined
 }
 
@@ -17,34 +18,33 @@ export const LinkListView: FC<HTMLAttributes<HTMLUListElement> & Props> = ({
   className,
   data,
   setDrawer,
-}) => (
-  <ul className={className}>
-    {data &&
-      data.fields.menuItems.map((menuItem) => {
-        if (isIPage(menuItem)) {
+}) => {
+  return (
+    <ul className={className}>
+      {data &&
+        data.map(({ children, href }, index) => {
           return (
-            <LinkListItem key={menuItem.sys.id}>
-              {menuItem.fields.slug !== 'donate' && (
-                <Link href={`/${menuItem.fields.slug}`}>
+            <LinkListItem key={index}>
+              {!href.includes('donate') && (
+                <Link href={href}>
                   <NavigationLink
                     onClick={() => setDrawer !== undefined && setDrawer(false)}
                   >
-                    {menuItem.fields.title}
+                    {children}
                   </NavigationLink>
                 </Link>
               )}
-              {menuItem.fields.slug === 'donate' && (
-                <Link href={`/${menuItem.fields.slug}`}>
-                  <Button large>{menuItem.fields.title}</Button>
+              {href.includes('donate') && (
+                <Link href={href}>
+                  <Button large>{children}</Button>
                 </Link>
               )}
             </LinkListItem>
           )
-        }
-        return null
-      })}
-  </ul>
-)
+        })}
+    </ul>
+  )
+}
 
 export const LinkList = styled(LinkListView)`
   list-style: none;

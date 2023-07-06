@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-import { color } from './color'
 import { query } from './mediaQueies'
 import { spacing } from './spacing'
 
