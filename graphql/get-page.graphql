@@ -23,6 +23,22 @@ query GetPage($slug: String, $preview: Boolean!) {
                 __typename
               }
               __typename
+              ... on Slideshow {
+                slidesCollection {
+                  items {
+                    sys {
+                      id
+                    }
+                    slideContent {
+                      json
+                    }
+                    slideAsset {
+                      url
+                      description
+                    }
+                  }
+                }
+              }
               ... on Hero {
                 heroImage {
                   url

@@ -172,6 +172,7 @@ export type AssetLinkingCollections = {
   cardCollection?: Maybe<CardCollection>;
   entryCollection?: Maybe<EntryCollection>;
   heroCollection?: Maybe<HeroCollection>;
+  slideCollection?: Maybe<SlideCollection>;
 };
 
 
@@ -200,6 +201,15 @@ export type AssetLinkingCollectionsHeroCollectionArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
 };
 
+
+export type AssetLinkingCollectionsSlideCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<AssetLinkingCollectionsSlideCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
 export enum AssetLinkingCollectionsCardCollectionOrder {
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
   SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
@@ -214,6 +224,19 @@ export enum AssetLinkingCollectionsCardCollectionOrder {
 }
 
 export enum AssetLinkingCollectionsHeroCollectionOrder {
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
+
+export enum AssetLinkingCollectionsSlideCollectionOrder {
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
   SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
@@ -1326,6 +1349,10 @@ export type Query = {
   navigationMenuCollection?: Maybe<NavigationMenuCollection>;
   page?: Maybe<Page>;
   pageCollection?: Maybe<PageCollection>;
+  slide?: Maybe<Slide>;
+  slideCollection?: Maybe<SlideCollection>;
+  slideshow?: Maybe<Slideshow>;
+  slideshowCollection?: Maybe<SlideshowCollection>;
 };
 
 
@@ -1473,6 +1500,40 @@ export type QueryPageCollectionArgs = {
   where?: InputMaybe<PageFilter>;
 };
 
+
+export type QuerySlideArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QuerySlideCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<SlideOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<SlideFilter>;
+};
+
+
+export type QuerySlideshowArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QuerySlideshowCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<SlideshowOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<SlideshowFilter>;
+};
+
 export type ResourceLink = {
   __typename?: 'ResourceLink';
   sys: ResourceSys;
@@ -1484,6 +1545,252 @@ export type ResourceSys = {
   type: Scalars['String']['output'];
   urn: Scalars['String']['output'];
 };
+
+/** An individual slide for a slideshow [See type definition](https://app.contentful.com/spaces/rk57t2u71nbm/content_types/slide) */
+export type Slide = Entry & {
+  __typename?: 'Slide';
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<SlideLinkingCollections>;
+  slideAsset?: Maybe<Asset>;
+  slideContent?: Maybe<SlideSlideContent>;
+  sys: Sys;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** An individual slide for a slideshow [See type definition](https://app.contentful.com/spaces/rk57t2u71nbm/content_types/slide) */
+export type SlideLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** An individual slide for a slideshow [See type definition](https://app.contentful.com/spaces/rk57t2u71nbm/content_types/slide) */
+export type SlideSlideAssetArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** An individual slide for a slideshow [See type definition](https://app.contentful.com/spaces/rk57t2u71nbm/content_types/slide) */
+export type SlideSlideContentArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** An individual slide for a slideshow [See type definition](https://app.contentful.com/spaces/rk57t2u71nbm/content_types/slide) */
+export type SlideTitleArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SlideCollection = {
+  __typename?: 'SlideCollection';
+  items: Array<Maybe<Slide>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type SlideFilter = {
+  AND?: InputMaybe<Array<InputMaybe<SlideFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<SlideFilter>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  slideAsset_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  slideContent_contains?: InputMaybe<Scalars['String']['input']>;
+  slideContent_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  slideContent_not_contains?: InputMaybe<Scalars['String']['input']>;
+  sys?: InputMaybe<SysFilter>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  title_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type SlideLinkingCollections = {
+  __typename?: 'SlideLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+  slideshowCollection?: Maybe<SlideshowCollection>;
+};
+
+
+export type SlideLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type SlideLinkingCollectionsSlideshowCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<SlideLinkingCollectionsSlideshowCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export enum SlideLinkingCollectionsSlideshowCollectionOrder {
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
+
+export enum SlideOrder {
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
+
+export type SlideSlideContent = {
+  __typename?: 'SlideSlideContent';
+  json: Scalars['JSON']['output'];
+  links: SlideSlideContentLinks;
+};
+
+export type SlideSlideContentAssets = {
+  __typename?: 'SlideSlideContentAssets';
+  block: Array<Maybe<Asset>>;
+  hyperlink: Array<Maybe<Asset>>;
+};
+
+export type SlideSlideContentEntries = {
+  __typename?: 'SlideSlideContentEntries';
+  block: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  inline: Array<Maybe<Entry>>;
+};
+
+export type SlideSlideContentLinks = {
+  __typename?: 'SlideSlideContentLinks';
+  assets: SlideSlideContentAssets;
+  entries: SlideSlideContentEntries;
+  resources: SlideSlideContentResources;
+};
+
+export type SlideSlideContentResources = {
+  __typename?: 'SlideSlideContentResources';
+  block: Array<ResourceLink>;
+};
+
+/** A collection of slides [See type definition](https://app.contentful.com/spaces/rk57t2u71nbm/content_types/slideshow) */
+export type Slideshow = Entry & {
+  __typename?: 'Slideshow';
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<SlideshowLinkingCollections>;
+  slidesCollection?: Maybe<SlideshowSlidesCollection>;
+  sys: Sys;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** A collection of slides [See type definition](https://app.contentful.com/spaces/rk57t2u71nbm/content_types/slideshow) */
+export type SlideshowLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** A collection of slides [See type definition](https://app.contentful.com/spaces/rk57t2u71nbm/content_types/slideshow) */
+export type SlideshowSlidesCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<SlideshowSlidesCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<SlideFilter>;
+};
+
+
+/** A collection of slides [See type definition](https://app.contentful.com/spaces/rk57t2u71nbm/content_types/slideshow) */
+export type SlideshowTitleArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SlideshowCollection = {
+  __typename?: 'SlideshowCollection';
+  items: Array<Maybe<Slideshow>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type SlideshowFilter = {
+  AND?: InputMaybe<Array<InputMaybe<SlideshowFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<SlideshowFilter>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  slides?: InputMaybe<CfSlideNestedFilter>;
+  slidesCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  sys?: InputMaybe<SysFilter>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  title_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type SlideshowLinkingCollections = {
+  __typename?: 'SlideshowLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type SlideshowLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export enum SlideshowOrder {
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
+
+export type SlideshowSlidesCollection = {
+  __typename?: 'SlideshowSlidesCollection';
+  items: Array<Maybe<Slide>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export enum SlideshowSlidesCollectionOrder {
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
 
 export type Sys = {
   __typename?: 'Sys';
@@ -1564,6 +1871,24 @@ export type CfCardNestedFilter = {
   body_not_contains?: InputMaybe<Scalars['String']['input']>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
   image_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  sys?: InputMaybe<SysFilter>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  title_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type CfSlideNestedFilter = {
+  AND?: InputMaybe<Array<InputMaybe<CfSlideNestedFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<CfSlideNestedFilter>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  slideAsset_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  slideContent_contains?: InputMaybe<Scalars['String']['input']>;
+  slideContent_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  slideContent_not_contains?: InputMaybe<Scalars['String']['input']>;
   sys?: InputMaybe<SysFilter>;
   title?: InputMaybe<Scalars['String']['input']>;
   title_contains?: InputMaybe<Scalars['String']['input']>;

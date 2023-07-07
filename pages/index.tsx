@@ -61,7 +61,7 @@ export default function Page({
   )
 }
 
-export async function getStaticProps({ preview = false }) {
+export async function getStaticProps({ preview = true }) {
   const apolloClient = initializeApollo()
 
   const page = extractPage(

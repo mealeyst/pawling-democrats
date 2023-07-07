@@ -16,13 +16,15 @@ import { Image as ImageComponent } from '../Assets/Image'
 import { Hero as HeroComponent } from '../Entries/Hero/Hero'
 import { Card as CardComponent } from '../Entries/Card/Card'
 import { Deck as DeckComponent } from '../Entries/Deck/Deck'
+import { Slideshow as SlideshowComponent } from '../Entries/Slideshow/Slideshow'
 import { Link as LinkComponent } from '../theme/Link'
-import { Asset, Card, Deck, Hero } from '../../@types/generated'
+import { Asset, Card, Deck, Hero, Slideshow } from '../../@types/generated'
 export function documentToReactComponents(json: Document, links?: any) {
   const EMBEDDABLE_ENTRY = {
     CARD: 'Card',
     DECK: 'Deck',
     HERO: 'Hero',
+    SLIDESHOW: 'Slideshow',
   }
 
   const renderEmbededAsset = (node: Block | Inline) => {
@@ -55,6 +57,9 @@ export function documentToReactComponents(json: Document, links?: any) {
         <CardComponent fields={fields} />
       ),
       [EMBEDDABLE_ENTRY.DECK]: (entry: Deck) => <DeckComponent entry={entry} />,
+      [EMBEDDABLE_ENTRY.SLIDESHOW]: (entry: Slideshow) => (
+        <SlideshowComponent entry={entry} />
+      ),
     }
     return renderEntry[embeddedEntry['__typename']](embeddedEntry)
   }
