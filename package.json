@@ -29,6 +29,7 @@
     "@apollo/client": "^3.7.15",
     "@contentful/rich-text-react-renderer": "latest",
     "@contentful/rich-text-types": "latest",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-brands-svg-icons": "latest",
     "@fortawesome/free-solid-svg-icons": "latest",
     "@fortawesome/react-fontawesome": "latest",
