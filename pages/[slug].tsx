@@ -82,9 +82,6 @@ export async function getStaticProps({ params, preview = false }) {
   const navigation = extractNavigationLinks(
     await client.query({
       query: GET_NAVIGATION,
-      variables: {
-        preview: true,
-      },
     })
   )
 

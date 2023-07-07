@@ -1,8 +1,5 @@
-query GetSiteNavigation(
-  $title: String = "Site Navigation"
-  $preview: Boolean!
-) {
-  navigationMenuCollection(where: { title: $title }, preview: $preview) {
+query GetSiteNavigation($title: String = "Site Navigation") {
+  navigationMenuCollection(where: { title: $title }) {
     items {
       title
       menuItemsCollection(limit: 100) {
