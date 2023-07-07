@@ -4,7 +4,6 @@ import Head from 'next/head'
 import { BlueTheme } from '../components/theme/Theme'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  console.log('pageProps', pageProps)
   return (
     <>
       <Head>
