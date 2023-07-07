@@ -68,7 +68,7 @@ export default function Page({
   )
 }
 
-export async function getStaticProps({ params, preview = true }) {
+export async function getStaticProps({ params, preview = false }) {
   const client = initializeApollo()
   const page = extractPage(
     await client.query({
