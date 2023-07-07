@@ -33,8 +33,9 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@types/*": ["@types/*"]
     }
   },
   "include": [

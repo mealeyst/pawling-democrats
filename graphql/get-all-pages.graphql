@@ -1,4 +1,4 @@
-query {
+query getAllPages {
   pageCollection(where: { slug_exists: true }) {
     items {
       slug

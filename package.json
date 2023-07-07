@@ -41,8 +41,10 @@
     "graphql-tag": "^2.12.6",
     "lodash": "latest",
     "next": "latest",
+    "ra-data-graphql": "^4.12.0",
     "react": "latest",
     "react-dom": "latest",
+    "react-slick": "^0.29.0",
     "styled-components": "^5.3.11"
   },
   "devDependencies": {
