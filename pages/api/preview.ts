@@ -1,5 +1,5 @@
 import { initializeApollo } from 'lib/apolloClient'
-import GET_PAGE from '../graphql/get-page.graphql'
+import GET_PAGE from '../../graphql/get-page.graphql'
 import { extractPage } from '../../lib/api'
 
 export default async function preview(req, res) {
