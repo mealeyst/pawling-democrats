@@ -12,12 +12,13 @@ export default async function preview(req, res) {
   // Fetch the headless CMS to check if the provided `slug` exists
   // const post = await getPreviewPostBySlug(slug)
   const client = initializeApollo()
+  console.log({ slug, preview })
   const page = extractPage(
     await client.query({
       query: GET_PAGE,
       variables: {
         slug: slug,
-        preview,
+        preview: true,
       },
     })
   )
@@ -28,7 +29,7 @@ export default async function preview(req, res) {
   }
 
   // Enable Draft Mode by setting the cookie
-  res.setDraftMode({ enable: true })
+  res.setPreviewData({ enable: true })
 
   // Redirect to the path from the fetched post
   // We don't redirect to req.query.slug as that might lead to open redirect vulnerabilities
